@@ -1,0 +1,75 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.5.2</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.5.2</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.5.2">練習問題 3.5.2</h3>
+整数
+<pre style="display:inline;">x</pre>
+は
+<pre style="display:inline;">x= 10 * y + z</pre>
+を満たす整数の対
+<pre style="display:inline;">(y,z)</pre>
+で表現できる． たとえば，
+<pre style="display:inline;">27</pre>
+は
+<pre style="display:inline;">(2,7)</pre>
+，
+<pre style="display:inline;">(3,-3)</pre>
+，
+<pre style="display:inline;">(1,17)</pre>
+さらに他の対で表現できる． 可能な表現の中から，
+<pre style="display:inline;">-5 &lt;= z &lt; 5</pre>
+かつ
+<pre style="display:inline;">abs y</pre>
+ができるだけ小さくなるように選べる． どの整数もこの方法で唯一に表現できることを示し，
+<pre style="display:inline;">repint x</pre>
+が整数
+<pre style="display:inline;">x</pre>
+のこの標準表現を返すように関数
+<pre style="display:inline;">repint</pre>
+を定義せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="spec"><code>  q = x `div` 10
+  r = x `mod` 10     
+  とすると
+  x = q * 10 + r   (1)
+  0 ≦ r ＜ 10     (2)
+  したがって，任意の整数 x は対(q,r)で一意に表現できる．
+  また(1)を変形すると
+  x = (q+1) * 10 + (r-10)   (3)
+  であるから，任意の整数 x は対(q+1,r-10)で一意に表現できる．
+  x `mod` 10 ＜ 5 の場合は y = q,   z = r
+  5 ≦ x `mod` 10 の場合は y = q+1, z = r - 10
+  とすれば，y および z は問題の仕様を満す．</code></pre>
+<pre style="display:inline;">repint</pre>
+の定義は以下のとおり．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">repint    ::</span>  <span class="dt">Integer</span> <span class="ot">-&gt;</span> (<span class="dt">Integer</span>,<span class="dt">Integer</span>)
+repint x  <span class="fu">=</span>   <span class="kw">if</span> r <span class="fu">&lt;</span> <span class="dv">5</span> <span class="kw">then</span> (q,r) <span class="kw">else</span> (q<span class="fu">+</span><span class="dv">1</span>,r<span class="fu">-</span><span class="dv">10</span>)
+  <span class="kw">where</span>
+    (q,r) <span class="fu">=</span> x <span class="ot">`divMod`</span> <span class="dv">10</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-17</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

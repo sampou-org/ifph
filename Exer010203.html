@@ -1,0 +1,81 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 1.2.3</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 1.2.3</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-1.2.3">練習問題 1.2.3</h3>
+<p>以下の構文規則で定義される整数表現の式言語を想像せよ． （i）zeroは式である．（ii）eが式なら，succ(e)およびpred(e)も式である． この言語で書かれた式は，評価器が以下の規則をこれ以上適用できなくなるまで繰り返し適用しながら簡約する．</p>
+<pre class="spec"><code>succ (pred (e)) = e
+pred (succ (e)) = e</code></pre>
+<p>式succ (pred (succ (pred (pred (zero)))))を単純化せよ．</p>
+<p>この式には何通りの方法で簡約規則を適用できるか． それらはどれも同じ結果になるか． どのような式を与えても簡約プロセスが必ず停止することを証明せよ．</p>
+<p>ヒント： 式の大きさ（size）という概念を適切に定義し，各簡約ステップにおいて確実に大きさが小さくなることを示せ．</p>
+<hr></hr>
+<pre class="spec"><code>(1) できるだけ外側から規則を適用
+    succ (pred (succ (pred (pred (zero)))))
+    ^^^^^^^^^^
+=   { succ (pred e) = e }
+    succ (pred (pred (zero)))
+    ^^^^^^^^^^
+=   { succ (pred e) = e }
+
+    pred (zero)
+
+(2) できるだけ内側から規則を適用
+    succ (pred (succ (pred (pred (zero)))))
+                ^^^^^^^^^^
+=   { succ (pred e) = e }
+    succ (pred (pred (zero)))
+    ^^^^^^^^^^
+=   { succ (pred e) = e }
+
+    pred (zero)
+
+(3) 2つめの規則を最初に適用
+    succ (pred (succ (pred (pred (zero)))))
+          ^^^^^^^^^^
+=   { pred (suc e) = e }
+    succ (pred (pred (zero)))
+    ^^^^^^^^^^
+=   { succ (pred e) = e }
+
+    pred (zero)</code></pre>
+<ul>
+<li>簡約方法は3通り</li>
+<li>すべて同じ結果になる</li>
+</ul>
+<p>停止性の証明：</p>
+<p>式の大きさsizeを以下のように定義する</p>
+<pre class="spec"><code>size(zero)    = 1
+size(succ(e)) = 1 + size(e)
+size(pred(e)) = 1 + size(e)</code></pre>
+<p>1つめの簡約規則：</p>
+<pre class="spec"><code>左辺：size(succ(pred(e))) = 2 + size(e)
+右辺：                          size(e)</code></pre>
+<p>すなわちこの規則を適用するとサイズが2減少する．</p>
+<p>2つめの簡約規則：</p>
+<pre class="spec"><code>左辺：size(pred(succ(e))) = 2 + size(e)
+右辺：                          size(e)</code></pre>
+<p>すなわちこの規則を適用するとサイズが2減少する．</p>
+<p>上述の結果により，初期式のサイズからはじまり，簡約規則適用毎に結果の式のサイズを 並べたサイズ列は厳密減少列である． かつ，有限回の演算（succおよびpred）適用できちんと構成された式のサイズの値は有限正数である． したがって，サイズ列の長さは有限である．ゆえに，簡約プロセスは必ず停止する．</p></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-11</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

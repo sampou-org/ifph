@@ -1,0 +1,51 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 2.4.3.</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 2.4.3.</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-2.4.3.">練習問題 2.4.3.</h3>
+日付は整数の3つ組
+<pre style="display:inline;">(d,m,y)</pre>
+を使って表現されているものとせよ．ただし，
+<pre style="display:inline;">d</pre>
+は日，
+<pre style="display:inline;">m</pre>
+は月，
+<pre style="display:inline;">y</pre>
+は年とする． 2つの日付（1つめは現在の日付，2つめは誰か
+<pre style="display:inline;">P</pre>
+の生年月日）を引数としてとり，
+<pre style="display:inline;">P</pre>
+の満年齢を返す関数を定義せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Date</span> <span class="fu">=</span> (<span class="dt">Int</span>,<span class="dt">Int</span>,<span class="dt">Int</span>)
+
+<span class="ot">wholeYears ::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+wholeYears (d,m,y) (d',m',y') <span class="fu">=</span> y''
+  <span class="kw">where</span>
+    d'' <span class="fu">=</span> d <span class="fu">-</span> d'
+    m'' <span class="fu">=</span> m <span class="fu">-</span> m' <span class="fu">-</span> <span class="kw">if</span> d'' <span class="fu">&lt;</span> <span class="dv">0</span> <span class="kw">then</span> <span class="dv">1</span> <span class="kw">else</span> <span class="dv">0</span>
+    y'' <span class="fu">=</span> y <span class="fu">-</span> y' <span class="fu">-</span> <span class="kw">if</span> m'' <span class="fu">&lt;</span> <span class="dv">0</span> <span class="kw">then</span> <span class="dv">1</span> <span class="kw">else</span> <span class="dv">0</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-13</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

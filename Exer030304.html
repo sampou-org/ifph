@@ -1,0 +1,141 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.3.4</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.3.4</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.3.4">練習問題 3.3.4</h3>
+関数
+<pre style="display:inline;">log</pre>
+は，すべての
+<pre style="display:inline;">m</pre>
+に対して，
+<pre style="display:inline;">log (2^m) = m</pre>
+であるという条件によって指定できる．
+<pre style="display:inline;">log</pre>
+のプログラムを構成し，それが仕様を満たすことを証明せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">log<span class="ot"> ::</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span>
+log (<span class="dt">Succ</span> <span class="dt">Zero</span>)  <span class="fu">=</span> <span class="dt">Zero</span>
+log m            <span class="fu">=</span> <span class="dt">Succ</span> (log (m <span class="fu">/</span> two))
+
+<span class="ot">two ::</span> <span class="dt">Nat</span>
+two <span class="fu">=</span>  <span class="dt">Succ</span> (<span class="dt">Succ</span> <span class="dt">Zero</span>)</code></pre>
+<pre style="display:inline;">m</pre>
+上の帰納法を使って証明する．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>Zero の場合
+   log (two ^ Zero)
+=  { ^ の定義 }
+   log (Succ Zero)
+=  { log の定義 }
+   Zero
+
+Succ m の場合
+   log (two ^ Succ m)
+=  { ^ の定義 }
+   log (two ^ m * two)
+=  { * の交換律 }
+   log (two * two ^ m)
+=  { log の定義 }
+   Succ (log (two * two ^ m / two))
+=  { / の仕様 }
+   Succ (log (two ^ m))
+=  { 帰納法の仮定 }
+   Succ m</code></pre>
+<pre style="display:inline;">*</pre> 
+の交換律：
+<pre style="display:inline;">m * n = n * m</pre>
+は以下のように
+<pre style="display:inline;">n</pre>
+上の帰納法により証明する．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>Zero の場合
+    m * Zero
+=   { * の定義 }
+    Zero
+=   { Zero は * の左零元 }
+    Zero * m
+
+Succ Zero の場合
+    m * Succ Zero
+=   { Succ Zero は単位元 }
+    Succ Zero * m
+
+Succ n の場合
+   m * Succ n
+=  { * の定義 }
+   m * n + m
+=  { 帰納法の仮定 }
+   n * m + m
+=  { * は foldn のインスタンス，セクション }
+   (+m) (foldn (+n) Zero m)
+=  { 融合法則 }
+   foldn (+n) m m
+=  { foldn (+ Succ n) Zero m = foldn (+n) m m だから}
+   foldn (+Succ n) Zero m
+=  { * は foldn のインスタンス }
+   Succ n * m</code></pre>
+<pre style="display:inline;">foldn (+ Succ n) Zero m = foldn (+n) m m</pre> 
+の証明は
+<pre style="display:inline;">m</pre>
+上の帰納法による．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>Zero の場合
+    foldn (+ Succ n) Zero Zero
+=   { * は foldn のインスタンス }
+    Succ n * Zero
+=   { * の定義 }
+    Zero
+=   { * の定義 }
+    n * Zero
+=   { * は foldn のインスタンス }
+    foldn (+ n) Zero Zero
+
+Succ m の場合
+    foldn (+ Succ n) Zero (Succ m)
+=   { foldn の定義 }
+    (+ Succ n) (foldn (+ Succ n) Zero m)
+=   { 帰納法の仮定 }
+    (+ Succ n) (foldn (+n) m m)
+=   { (+Succ n) = Succ . (+n) かつ m = (+m) Zero }
+    (Succ . (+n) . foldn (+n) ((+m) Zero)) m
+=   { 融合法則 }
+    (Succ . (+n) . (+m) . foldn (+n) Zero) m
+=   { Succ = (+1) }
+    ((+1) . (+n) . (+m) . foldn (+n) Zero) m
+=   { 交換則，結合則 }
+    ((+n) . (+1) . (+m) . fold (+n) Zero) m
+=   { Succ = (+1) }
+    ((+n) . (+ Succ m) . fold (+n) Zero) m
+=   { 融合法則 }
+    ((+n) . (fold (+n) ((+ Succ m) Zero))) m
+=   { (.)の定義，セクション，Zero は + の単位元 }
+    (+n) (foldn (+n) (Succ m) m)
+=   { foldn の定義 }
+    foldn (+n) (Succ m) (Succ m)</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-05</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

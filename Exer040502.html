@@ -1,0 +1,51 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.5.2</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.5.2</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.5.2">練習問題 4.5.2</h3>
+練習問題<a href="Exer040307.html">4.3.7</a>で議論した
+<pre style="display:inline;">takeWhile</pre>
+と
+<pre style="display:inline;">dropWhile</pre>
+という2つの関数を考える．
+<pre style="display:inline;">takeWhile</pre>
+を
+<pre style="display:inline;">foldr</pre>
+の具体例として定義せよ．
+<pre style="display:inline;">dropWhile</pre>
+は畳み込み関数の具体例として定義できるか．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">takeWhile<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+takeWhile p <span class="fu">=</span> foldr f []
+  <span class="kw">where</span>
+    f x xs <span class="fu">=</span> <span class="kw">if</span> p x <span class="kw">then</span> x<span class="fu">:</span>xs <span class="kw">else</span> []</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">dropWhile<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+dropWhile p <span class="fu">=</span> foldl f []
+  <span class="kw">where</span>
+     f xs y <span class="fu">|</span> null xs <span class="fu">&amp;&amp;</span> p y <span class="fu">=</span> []
+            <span class="fu">|</span> otherwise      <span class="fu">=</span> xs <span class="fu">++</span> [y]</code></pre>
+<p>効率は悪い．</p></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-03-30</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

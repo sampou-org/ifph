@@ -1,0 +1,68 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.3.7</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.3.7</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.3.7">練習問題 4.3.7</h3>
+便利な関数
+<pre style="display:inline;">takeWhile</pre>
+および
+<pre style="display:inline;">dropWhile</pre>
+は，第1引数が自然数ではなく論理関数であることを除けば
+<pre style="display:inline;">take</pre>
+および
+<pre style="display:inline;">drop</pre>
+と同じである． この点からいえば
+<pre style="display:inline;">filter</pre>
+ともよく似ている．
+<pre style="display:inline;">takeWhile p xs</pre>
+の値は，
+<pre style="display:inline;">xs</pre>
+の先頭部分リストのうち，すべての要素について
+<pre style="display:inline;">p</pre>
+<p>を満たす最長のものである． 例を挙げると次のとおり．</p>
+<pre class="spec"><code>takeWhile even [2,4,6,1,5,6] = [2,4,6]</code></pre>
+<pre style="display:inline;">dropWhile p xs</pre>
+の値はその残りの部分である． 例を挙げると以下のとおり．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>dropWhile even [2,4,6,1,5,6] = [1,5,6]</code></pre>
+<pre style="display:inline;">takeWhile</pre>
+および
+<pre style="display:inline;">dropWhile</pre>
+を再帰的に定義せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">takeWhile<span class="ot">           ::</span>  (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+takeWhile _ []      <span class="fu">=</span>   []
+takeWhile p (x<span class="fu">:</span>xs)
+  <span class="fu">|</span> p x             <span class="fu">=</span>   x <span class="fu">:</span> takeWhile p xs
+  <span class="fu">|</span> otherwise       <span class="fu">=</span>   []
+
+dropWhile<span class="ot">           ::</span>  (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+dropWhile _ []      <span class="fu">=</span>   []
+dropWhile p xxs<span class="fu">@</span>(x<span class="fu">:</span>xs)
+  <span class="fu">|</span> p x             <span class="fu">=</span>   dropWhile p xs
+  <span class="fu">|</span> otherwise       <span class="fu">=</span>   xxs</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-01</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

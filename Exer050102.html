@@ -1,0 +1,48 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 5.1.2</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 5.1.2</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-5.1.2">練習問題 5.1.2</h3>
+<p>10億未満の正の数を処理するように解を一般化せよ．</p>
+<hr></hr>
+<pre style="display:inline;">convert9</pre>
+を追加し，これを
+<pre style="display:inline;">convert</pre>
+とする．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">convert9   ::</span>  <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+convert9   <span class="fu">=</span>   combine9 <span class="fu">.</span> digits9
+
+<span class="ot">digits9    ::</span>  <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">Int</span>,<span class="dt">Int</span>)
+digits9    <span class="fu">=</span>   (<span class="ot">`divMod`</span> <span class="dv">1000000</span>)
+
+<span class="ot">combine9            ::</span>  (<span class="dt">Int</span>,<span class="dt">Int</span>) <span class="ot">-&gt;</span> <span class="dt">String</span>
+combine9 (<span class="dv">0</span>,h<span class="fu">+</span><span class="dv">1</span>)    <span class="fu">=</span>   convert6 (h<span class="fu">+</span><span class="dv">1</span>)
+combine9 (m<span class="fu">+</span><span class="dv">1</span>,<span class="dv">0</span>)    <span class="fu">=</span>   convert3 (m<span class="fu">+</span><span class="dv">1</span>) <span class="fu">++</span> <span class="st">&quot; million&quot;</span>
+combine9 (m<span class="fu">+</span><span class="dv">1</span>,h<span class="fu">+</span><span class="dv">1</span>)  <span class="fu">=</span>   convert3 (m<span class="fu">+</span><span class="dv">1</span>) <span class="fu">++</span> <span class="st">&quot; million &quot;</span> <span class="fu">++</span> convert6 (h<span class="fu">+</span><span class="dv">1</span>)
+
+<span class="ot">convert ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+convert <span class="fu">=</span> convert9      </code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-07-04</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

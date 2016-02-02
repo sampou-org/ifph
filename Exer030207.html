@@ -1,0 +1,99 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.2.7</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.2.7</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.2.7">練習問題 3.2.7</h3>
+本文では，等式
+<pre style="display:inline;">P(n)</pre>
+がすべての擬数
+<pre style="display:inline;">n</pre>
+に対して成り立てば
+<pre style="display:inline;">P(infinity)</pre>
+も成り立つと主張している．
+<pre style="display:inline;">P</pre>
+中のすべての自由変数は全称限量されていなければならない． たとえば，以下の2つはどちらを
+<pre style="display:inline;">P(n)</pre>
+としても成り立つ．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code> すべての x および m に対して  x↑(m + n)   =  (x↑m) * (x↑n)
+ すべての$m$に対して           (m + n) - n  =  m</code></pre>
+一般には等式
+<pre style="display:inline;">P(n)</pre>
+に存在限量された変数を含められない． しかしながら，たとえば，以下のように定義された命題
+<pre style="display:inline;">P(n)</pre>
+を考える．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>ある有限数 m が存在して n `ominus` m = ⊥</code></pre>
+ここで，
+<pre style="display:inline;">`ominus`</pre>
+は減算の全域版であり，
+<pre style="display:inline;">n &lt; m</pre>
+ならば
+<pre style="display:inline;">n `ominus` m= Zero</pre>
+である． 帰納法を用いて
+<pre style="display:inline;">P(n)</pre>
+が任意の擬数
+<pre style="display:inline;">n</pre>
+に対して成り立つことを示せ． さらに，帰納法により，
+<pre style="display:inline;">infinity `ominus` m = infinity</pre>
+が任意の有限数
+<pre style="display:inline;">m</pre>
+について成り立つことを証明せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="spec"><code>⊥の場合
+    ⊥ `ominus` m
+=   { ominus の定義．場合の枯渇 }
+    ⊥
+    この場合は任意の有限 m についてP(n)が成り立つ．
+Succ n の場合
+    帰納法の仮定より∃m : n `ominus` m = ⊥
+    Succ n `ominus` Succ m
+=   { ominus の定義 }
+    n `ominus` m
+=   { 帰納法の仮定 }
+    ⊥</code></pre>
+<pre style="display:inline;">infinity `ominus` m = infinity</pre>
+は
+<pre style="display:inline;">m</pre>
+上の帰納法による
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>Zeroの場合
+    infinity `ominus` Zero
+=   { ominusの定義 }
+    infinity
+
+Succ n の場合
+    infinity `ominus` Succ n
+=   { infinityの定義 }
+    Succ infinity `ominus` Succ n
+=   { ominusの定義 }
+    infinity `ominus` n
+=   { 帰納法の仮定 }
+    infinity</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-12-08</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

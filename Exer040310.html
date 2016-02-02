@@ -1,0 +1,37 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.3.10</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.3.10</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.3.10">練習問題 4.3.10</h3>
+<pre style="display:inline;">0 &lt; a,b,c,d ≦ n</pre>
+の範囲でa<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup> + d<sup>2</sup>を満たす本質的に異なる4つ組
+<pre style="display:inline;">(a,b,c,d)</pre>
+をすべて見つけるプログラムを書け．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<p>a == c ∧ b == d なものを省く</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">quadruple ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> [(<span class="dt">Int</span>,<span class="dt">Int</span>,<span class="dt">Int</span>,<span class="dt">Int</span>)]
+quadruple n <span class="fu">=</span> [(a,b,c,d) <span class="fu">|</span> a <span class="ot">&lt;-</span> [<span class="dv">1</span><span class="fu">..</span>n], b <span class="ot">&lt;-</span> [a<span class="fu">..</span>n], c <span class="ot">&lt;-</span> [a<span class="fu">+</span><span class="dv">1</span><span class="fu">..</span>n], d <span class="ot">&lt;-</span> [c<span class="fu">..</span>n], a<span class="fu">^</span><span class="dv">2</span><span class="fu">+</span>b<span class="fu">^</span><span class="dv">2</span> <span class="fu">==</span> c<span class="fu">^</span><span class="dv">2</span><span class="fu">+</span>d<span class="fu">^</span><span class="dv">2</span> ]</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

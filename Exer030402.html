@@ -1,0 +1,48 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.4.2</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.4.2</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.4.2">練習問題 3.4.2</h3>
+<pre style="display:inline;">y</pre>
+が負のとき，
+<pre style="display:inline;">y ＜ x `mod` y ≦ 0</pre>
+であることを示せ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="spec"><code>     x = (x `div` y) * y + (x `mod` y)
+≡   { divの定義 }
+     x = floor (x / y) * y + x `mod` y
+≡   { x/y -1 ＜ floor (x/y) ≦ x/y かつ y ＜ 0 だから x ≦ floor (x/y) * y ＜ x - y  }
+     
+≡   { divの定義 }
+     x + (x `mod` y) ≦ (x `div` y) * y + (x `mod` y)
+     ∧ (x `div` y) * y + (x `mod` y) ＜ x - y + (x `mod` y)
+≡   { 等式左辺右辺を1つめの不等式の両辺から引き，右辺左辺を2つめの不等式の両辺から引く }
+     x `mod` y ≦ 0 ∧ 0 ＜ - y + (x `mod` y)
+≡   { 2つめの不等式の変形 }
+     x `mod` y ≦ 0 ∧ y ＜ x `mod` y
+≡   { 統合 }
+     y ＜ x `mod` y ≦ 0</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-05</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

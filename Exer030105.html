@@ -1,0 +1,40 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.1.5</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.1.5</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.1.5">練習問題 3.1.5</h3>
+<pre style="display:inline;">m &lt; n</pre>
+の場合は
+<pre style="display:inline;">m `ominus` n= Zero</pre>
+となる，減算の全域版
+<pre style="display:inline;">`ominus`</pre>
+を定義せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">ominus                     ::</span>  <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span>
+m        <span class="ot">`ominus`</span> <span class="dt">Zero</span>     <span class="fu">=</span>   m
+<span class="dt">Zero</span>     <span class="ot">`ominus`</span> _        <span class="fu">=</span>   <span class="dt">Zero</span>
+(<span class="dt">Succ</span> m) <span class="ot">`ominus`</span> (<span class="dt">Succ</span> n) <span class="fu">=</span>   m <span class="ot">`ominus`</span> n</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-12-08</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

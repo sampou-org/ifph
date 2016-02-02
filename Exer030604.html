@@ -1,0 +1,58 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.6.4</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.6.4</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.6.4">練習問題 3.6.4</h3>
+収束をテストするもう1つの方法は，連続する2つの近似値
+<pre style="display:inline;">y</pre>
+，
+<pre style="display:inline;">y'</pre>
+が十分に近いときに停止することである．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>abs (y - y') &lt; eps * abs y</code></pre>
+<pre style="display:inline;">sqrt</pre>
+の定義を書き換えてこのテストを使うようにせよ． 実際に使う場合にはこのテストあるいは前問のテストのほうが優れている理由を説明せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">sqrt<span class="ot"> ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+sqrt x <span class="fu">=</span> until done improve x
+         <span class="kw">where</span>  done y <span class="fu">=</span> abs (y <span class="fu">-</span> improve y) <span class="fu">&lt;</span> eps <span class="fu">*</span> abs y
+                improve y <span class="fu">=</span> (y<span class="fu">+</span>x<span class="fu">/</span>y)<span class="fu">/</span><span class="dv">2</span>
+
+<span class="ot">eps ::</span> <span class="dt">Double</span>
+eps <span class="fu">=</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">000001</span></code></pre>
+<pre style="display:inline;">abs (y * y - x) &lt; eps</pre>
+の場合には
+<pre style="display:inline;">x</pre>
+の値が小さいと根の有効桁がすくなくなり，
+<pre style="display:inline;">x</pre>
+が
+<pre style="display:inline;">eps</pre>
+より小さい数については計算できない．一方，練習問題3.6.3，3.6.4の方法であれば有効桁はほぼ一定にたもたれる．
+<pre style="display:inline;"></pre>
+
+</div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-05</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

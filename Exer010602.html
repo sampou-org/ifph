@@ -1,0 +1,50 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 1.6.2</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 1.6.2</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-1.6.2">練習問題 1.6.2</h3>
+<pre style="display:inline;">f :: (a,b) -&gt; c</pre>
+であるようなすべての
+<pre style="display:inline;">f</pre>
+に対して，以下を満たす関数
+<pre style="display:inline;">swap</pre>
+を定義せよ．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>flip (curry f) = curry (f . swap)</code></pre>
+<hr></hr>
+<pre class="spec"><code>    flip (curry f) = curry (f . swap)
+=   { 外延性の原理 }
+    flip (curry f) x y = curry (f . swap) x y
+=   { flip の定義 }
+    (curry f) y x = curry (f . swap) x y
+=   { curry の定義 }
+    f (y,x) = (f . swap) (x,y)
+=   { (.) の定義 }
+    f (y,x) = f (swap (x,y))
+=   { Leibniz相等性 }
+    (y,x) = swap (x,y)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">swap ::</span> (a,b) <span class="ot">-&gt;</span> (b,a)
+swap (x,y) <span class="fu">=</span> (y,x)</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-11</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

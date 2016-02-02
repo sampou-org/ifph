@@ -1,0 +1,121 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.6.3</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.6.3</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.6.3">練習問題 4.6.3</h3>
+<pre style="display:inline;">foldl</pre>
+に対する融合定理は次のものである．
+<pre style="display:inline;">f</pre>
+が正格関数で
+<pre style="display:inline;">f a = b</pre>
+かつ任意の
+<pre style="display:inline;">x</pre>
+，
+<pre style="display:inline;">y</pre>
+について
+<pre style="display:inline;">f (g x y)= h (f x) y</pre>
+であるならば，
+<pre style="display:inline;">f . foldl g a = foldl h b</pre>
+である．
+<pre style="display:inline;"></pre>
+
+帰納法による証明の中で場合
+<pre style="display:inline;">(x:xs)</pre>
+では，
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>f (foldl g (g a x) xs) = foldl h (h (f a) x) xs</code></pre>
+であることを示す必要がある．そのためには2つめの帰納法の仮定，すなわち，任意の
+<pre style="display:inline;">x</pre>
+，
+<pre style="display:inline;">y</pre>
+および任意のリスト
+<pre style="display:inline;">zs</pre>
+において，
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>f (foldl g (g x y) zs) = foldl h (h (f x) y) zs</code></pre>
+であることを使う必要がある． この等式を証明し，
+<pre style="display:inline;">foldl</pre>
+に対する融合定理の証明を完成せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+任意の
+<pre style="display:inline;">x</pre>
+，
+<pre style="display:inline;">y</pre>
+および任意のリスト
+<pre style="display:inline;">zs</pre>
+において，
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>f (foldl g (g x y) zs) = foldl h (h (f x) y) zs</code></pre>
+<p>であることをzs上の帰納法によって示す．</p>
+<pre class="spec"><code>[] の場合
+    f (foldl g (g x y) [])
+=       { foldl の定義 }
+    f (g x y)
+=       { f (g x y) = h (f x) y だから }
+    h (f x) y
+=       { foldl の定義 }
+    foldl h (h (f x) y) []
+
+z:zs の場合
+    f (foldl g (g x y) (z:zs))
+=       { foldl の定義 }
+    f (foldl g (g (g x y) z) zs)
+=       { 帰納法の仮定 }
+    foldl h (h (f (g x y)) z) zs
+=       { foldl の定義 }
+    foldl h (f (g x y)) (z:zs)
+=       { f (g x y) = h (f x) y であるから }
+    foldl h (h (f x) y) (z:zs)</code></pre>
+<pre style="display:inline;">foldl</pre>
+の融合定理
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>f は正格，かつ，f a = b，かつ，任意の x，y に対して f (g x y) = h (f x) y ならば，任意のzsに対して
+f (foldl g a zs) = foldl h b zs</code></pre>
+<p>証明はzs上の帰納法による．</p>
+<pre class="spec"><code>[]の場合
+    f (foldl g a [])
+=       { foldl の定義 }
+    f a
+=       { f a = b }
+    b
+=       { foldl の定義 }
+    foldl h b []
+
+x:xsの場合
+    f (foldl g a (x:xs))
+=       { foldl の定義 }
+    f (foldl g (g a x) xs)
+=       { f (foldl g (g x y) zs) = foldl h (h (f x) y) zs であるから }
+    foldl h (h (f a) x) xs
+=       { f a = b }
+    foldl h (h b x) xs
+=       { foldl の定義 }
+    foldl h b (x:xs)</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-17</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.1.3</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.1.3</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.1.3">練習問題 4.1.3</h3>
+空リストではないリストの最後の要素を返す関数
+<pre style="display:inline;">last</pre>
+の定義として以下の2つを考えよ．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell">last  (x<span class="fu">:</span>xs) <span class="fu">=</span> <span class="kw">if</span> null xs  <span class="kw">then</span> x <span class="kw">else</span> last  xs
+last' (x<span class="fu">:</span>xs) <span class="fu">=</span> <span class="kw">if</span> xs <span class="fu">==</span> [] <span class="kw">then</span> x <span class="kw">else</span> last' xs</code></pre>
+<pre style="display:inline;">last</pre>
+と
+<pre style="display:inline;">last'</pre>
+の違いは型が少し違うところである．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell">last<span class="ot">  ::</span> [a] <span class="ot">-&gt;</span> a
+<span class="ot">last' ::</span> (<span class="dt">Eq</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a</code></pre>
+<pre style="display:inline;">last'</pre>
+の定義には明示的に相等性検査が含まれているがゆえに，その型は相等性を持つ型から得られる要素のリストに限定される． 評価器が
+<pre style="display:inline;">last e</pre>
+と
+<pre style="display:inline;">last' e</pre>
+に対して異なる結果を応答するような式
+<pre style="display:inline;">e</pre>
+の例を挙げよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+たとえば，
+<pre style="display:inline;">e = (take 5 (iterate ((1+) .) id))</pre> 
+とする．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>? let e = (take 5 (iterate ((1+) .) id))
+? let f = last e
+? f 0
+4
+? let f' = last' e
+
+&lt;interactive&gt;:8:10:
+    No instance for (Eq (Integer -&gt; Integer))
+      arising from a use of last'
+    Possible fix:
+      add an instance declaration for (Eq (Integer -&gt; Integer))
+    In the expression: last' e
+    In an equation for f': f' = last' e
+?</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

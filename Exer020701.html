@@ -1,0 +1,53 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 2.7.1</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 2.7.1</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-2.7.1">練習問題 2.7.1</h3>
+以下の文字列を昇順に出力せよ．
+<pre style="display:inline;">&quot;McMillan&quot;</pre>
+，
+<pre style="display:inline;">&quot;Macmillan&quot;</pre>
+，
+<pre style="display:inline;">&quot;MacMillan&quot;</pre>
+．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.List</span>
+
+<span class="ot">strings  ::</span>  (<span class="dt">String</span>,<span class="dt">String</span>,<span class="dt">String</span>)
+strings  <span class="fu">=</span>   (<span class="st">&quot;McMillan&quot;</span>,<span class="st">&quot;Macmillan&quot;</span>,<span class="st">&quot;MacMillan&quot;</span>)
+
+<span class="ot">sort3 ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> (a,a,a) <span class="ot">-&gt;</span> (a,a,a)
+sort3 (x,y,z) 
+  <span class="fu">|</span> x <span class="fu">&gt;</span> y     <span class="fu">=</span> sort3 (y,x,z)
+  <span class="fu">|</span> y <span class="fu">&gt;</span> z     <span class="fu">=</span> sort3 (x,z,y)
+  <span class="fu">|</span> otherwise <span class="fu">=</span> (x,y,z)
+<span class="co">{-</span>
+<span class="co">? strings</span>
+<span class="co">(&quot;McMillan&quot;,&quot;Macmillan&quot;,&quot;MacMillan&quot;)</span>
+<span class="co">? sort3 strings</span>
+<span class="co">(&quot;MacMillan&quot;,&quot;Macmillan&quot;,&quot;McMillan&quot;)</span>
+<span class="co">-}</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-12-08</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

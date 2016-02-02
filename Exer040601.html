@@ -1,0 +1,57 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.6.1</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.6.1</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.6.1">練習問題 4.6.1</h3>
+第3双対定理を証明せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<p>第3双対定理</p>
+<pre class="spec"><code>foldr f e xs = foldl (flip f) e (reverse xs)</code></pre>
+<p>xs上の帰納法により証明</p>
+<pre class="spec"><code>[]の場合：
+    foldr f e []
+=       { foldr の定義 }
+    e
+=       { foldl の定義 }
+    foldl (flip f) e []
+=       { reverse の定義 }
+    foldl (flip f) e (reverse [])
+
+(x:xs) の場合：
+    foldr f e (x:xs)
+=       { foldr の定義 }
+    f x (foldr f e xs)
+=       { 帰納法の仮定 }
+    f x (foldl (flip f) e (reverse xs))
+=       { flip の定義 }
+    (flip f) (foldl (flip f) e (reverse xs)) x
+=       { 任意の g について foldl g y [x] = g y x であるから }
+    foldl (flip f) (foldl (flip f) e (reverse xs)) [x]
+=       { 任意の g について foldl g e (xs ++ ys) = foldl g (foldl g e xs) ys だから }
+    foldl (flip f) e (reverse xs ++ [x])
+=       { reverse の定義 }
+    foldl (flip f) e (reverse (x:xs))</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

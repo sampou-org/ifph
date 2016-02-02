@@ -1,0 +1,207 @@
+--
+title: 正誤表
+date: 2013-07-04
+--
+
+## 正誤表
+
+<table id="errata" class="tablesorter">
+ <thead>
+  <tr>
+   <th>報告日</th>
+   <th>ページ</th>
+   <th class="{sorter: false}">内容</th>
+  </tr>
+ </thead>
+<!--
+  <tr>
+   <td>2013/07/04</td>
+   <td></td>
+   <td>
+    誤：<br>
+    正：
+   </td>
+  </tr>
+-->
+  <tr>
+   <td>2013/06/30</td>
+   <td>p.189 heightの定義直後</td>
+   <td>
+    誤：maxlist = foldl1 (max) であることを思い出してもらいたい．<br>
+    正：maxlist = foldl (max) 0 である．
+   </td>
+  </tr>
+  <tr>
+   <td>2013/06/30</td>
+   <td>p.169 fillParaの定義</td>
+   <td>
+    誤：if null xs then [ ] else xs : fillPara n ys <br>
+    正：if null ys then [xs] else xs : fillPara n ys
+   </td>
+  </tr>
+  <tr>
+   <td>2013/06/01</td>
+   <td>p.137 練習問題 5.1.2</td>
+   <td>
+    誤：10億までの<br>
+    正：10億未満の
+   </td>
+  </tr>
+  <tr>
+   <td>2013/03/30</td>
+   <td>p.123 練習問題 4.5.4</td>
+   <td>
+    誤：以下ような<br>
+    正：以下のような
+   </td>
+  </tr>
+  <tr>
+   <td>2013/02/16</td>
+   <td>p.094 l.-3</td>
+   <td>
+    誤：付随する<br>
+    正：対応する
+   </td>
+  </tr>
+  <tr>
+   <td>2013/02/16</td>
+   <td>p.098 l.6</td>
+   <td>
+    誤：リスト要素<br>
+    正：リストの要素
+   </td>
+  <tr>
+   <td>2013/02/16</td>
+   <td>p.098 l.-5</td>
+   <td>
+    誤：随伴する<br>
+    正：対応する
+   </td>
+  </tr>
+  <tr>
+   <td>2013/02/16</td>
+   <td>p.103 l.15</td>
+   <td>
+    誤：引数リスト<br>
+    正：リスト
+   </td>
+  </tr>
+  <tr>
+   <td>2013/02/16</td>
+   <td>p.114 l.-5</td>
+   <td>
+    誤：であると分かる．<br>
+    正：であると思えてくる．
+   </td>
+  </tr>
+  <tr>
+   <td>2013/02/15</td>
+   <td>p.122 l.-1</td>
+   <td>
+    誤：さらに効率の良いプログラム<br>
+    正：この効率の良いほうのプログラム
+   </td>
+  </tr>
+  <tr>
+   <td>2013/02/15</td>
+   <td>p.124 練習問題 4.5.8</td>
+   <td>
+    誤：プログラムについて説明せよ．<br>
+    正：プログラムが正しいことを説明せよ．
+   </td>
+  </tr>
+  <tr>
+   <td>2013/01/22</td>
+   <td>p.059 下から3行目</td>
+   <td>
+    誤：等式 infinity + n = infinity は有限の n に対してのみ成り立つ<br>
+    正：等式 infinity + n = infinity は n が擬数のときには成り立たない
+   </td>
+  </tr>
+  <tr>
+   <td>2013/01/19</td>
+   <td>p.044 練習問題 2.4.3</td>
+   <td>
+    誤：関数を定義せよ．<br>
+    正：関数ageを定義せよ．
+   </td>
+  </tr>
+  <tr>
+   <td>2013/01/05</td>
+   <td>p.086 練習問題 3.7.1</td>
+   <td>
+    誤：isZero :: Cnum α→ CBool α<br>
+    正：isZero :: Cnum α→ Cbool α
+   </td>
+  </tr>
+  <tr>
+   <td>2012/12/11</td>
+   <td>p.083 練習問題 3.6.1</td>
+   <td>
+    誤： m &lt; p &lt; n であれば，m + 1 &lt; n であることを示せ．<br>
+    正： m + 1 &lt; n であれば，m &lt; p &lt; n であることを示せ．
+   </td>
+  </tr>
+  <tr>
+   <td>2012/12/08</td>
+   <td>p.049 練習問題 2.6.1</td>
+   <td>
+    誤：10マイル未満<br>
+    正：差が10マイル未満
+   </td>
+  </tr>
+  <tr>
+   <td>2012/12/08</td>
+   <td>p.030 l.13</td>
+   <td>
+    誤：左辺の引数<br>
+    正：左側の引数
+   </td>
+  </tr>
+  <tr>
+   <td>2012/11/17</td>
+   <td>p.015 §1.4.7 l.08-10</td>
+   <td>
+    誤：すなわち，g の型は型aと型bに対してg :: a → bで，fの型は型cに対してf :: b → cでなければならない．このときf . g :: a → cとなる<br>
+    正：すなわち，g の型は型αと型βに対してg :: α → βで，fの型は型γに対してf :: β → γでなければならない．このときf . g :: α → γとなる
+   </td>
+  </tr>
+  <tr>
+   <td>2012/11/11</td>
+   <td>p.070 最後の行</td>
+   <td>
+    誤：foldn h b n<br>
+    正：foldn h b (Succ n)
+   </td>
+  </tr>
+  <tr>
+   <td>2012/11/11</td>
+   <td>p.071 2行目</td>
+   <td>
+    誤：h (foldn h b (Succ n))<br>
+    正：h (foldn h b n)
+   </td>
+  </tr>
+  <tr>
+   <td>2012/11/02</td>
+   <td>p.328 evalExの定義3-4行目</td>
+   <td>
+    誤：<br>
+    do x <- eval t<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y <- eval u<br>
+    正：<br>
+    do x <- evalEx t<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y <- evalEx u
+   </td>
+  </tr>
+  <tr>
+   <td>2012/10/19</td>
+   <td>o.003(iii)-謝辞 4行目</td>
+   <td>
+    誤：誤りの指摘を見つけていただいたきました．<br >
+    正：誤りの指摘をいただきました．
+   </td>
+  </tr>
+ <tbody>
+ </tbody>
+</table>

@@ -1,0 +1,50 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.5.5</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.5.5</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.5.5">練習問題 4.5.5</h3>
+<pre style="display:inline;">remdups</pre>
+はリストから隣接する重複を取り除く関数である．たとえば，
+<pre style="display:inline;">remdups [1,2,2,3,3,3,1,1] = [1,2,3,1]</pre>
+である．
+<pre style="display:inline;">remdups</pre>
+を
+<pre style="display:inline;">foldr</pre>
+を使って定義せよ．また，
+<pre style="display:inline;">foldl</pre>
+を使っても定義してみよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">remdup  ::</span>  <span class="dt">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+remdup <span class="fu">=</span> foldr f []
+  <span class="kw">where</span>  f x []                    <span class="fu">=</span> [x]
+         f x yys<span class="fu">@</span>(y<span class="fu">:</span>_) <span class="fu">|</span> x <span class="fu">==</span> y    <span class="fu">=</span> yys
+                       <span class="fu">|</span> otherwise <span class="fu">=</span> x<span class="fu">:</span>yys</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">remdup' ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+remdup' <span class="fu">=</span> reverse <span class="fu">.</span> foldl g []
+  <span class="kw">where</span>  g []        z             <span class="fu">=</span> [z]
+         g yys<span class="fu">@</span>(y<span class="fu">:</span>_) z <span class="fu">|</span> y <span class="fu">==</span> z    <span class="fu">=</span> yys
+                       <span class="fu">|</span> otherwise <span class="fu">=</span> z<span class="fu">:</span>yys</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-15</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>
