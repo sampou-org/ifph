@@ -1,0 +1,58 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 2.6.2.</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 2.6.2.</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-2.6.2.">練習問題 2.6.2.</h3>
+<p>以下の宣言を考える．</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Jane</span>     <span class="fu">=</span> <span class="dt">MkJane</span> <span class="dt">Int</span>
+<span class="kw">newtype</span> <span class="dt">Dick</span>  <span class="fu">=</span> <span class="dt">MkDick</span> <span class="dt">Int</span></code></pre>
+適当な関数を定義して，
+<pre style="display:inline;">Jane</pre>
+と
+<pre style="display:inline;">Dick</pre> 
+が異なることを例示せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre style="display:inline;">data</pre>
+宣言と
+<pre style="display:inline;">newtype</pre>
+宣言の違い示す．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell">jane <span class="fu">=</span> undefined
+dick <span class="fu">=</span> undefined
+
+<span class="ot">sureJane ::</span> <span class="dt">Jane</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+sureJane (<span class="dt">MkJane</span> x) <span class="fu">=</span> <span class="dt">True</span>
+<span class="ot">sureDick ::</span> <span class="dt">Dick</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+sureDick (<span class="dt">MkDick</span> x) <span class="fu">=</span> <span class="dt">True</span>
+
+<span class="co">{-</span>
+<span class="co">? sureJane jane</span>
+<span class="co">*** Exception: Prelude.undefined</span>
+<span class="co">? sureDick dick</span>
+<span class="co">True</span>
+<span class="co">-}</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-12-08</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 2.1.8</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 2.1.8</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-2.1.8">練習問題 2.1.8</h3>
+データ型上の
+<pre style="display:inline;">(==)</pre>
+は，以下の3つの性質を満たすことが保証されなければならない．
+<pre style="display:inline;"></pre>
+
+<ul>
+<li><strong>反射律：</strong> すべての
+<pre style="display:inline;">x</pre>
+に対して
+<pre style="display:inline;">x == x</pre></li>
+<li><strong>推移律：</strong>
+<pre style="display:inline;">x == y</pre>
+かつ
+<pre style="display:inline;">y == z</pre>
+ならば
+<pre style="display:inline;">x == z</pre></li>
+<li><strong>対称律：</strong>
+<pre style="display:inline;">x == y</pre>
+ならば
+<pre style="display:inline;">y == x</pre>
+</li>
+</ul>
+きちんと定義された
+<pre style="display:inline;">Bool</pre>
+値の上に定義された
+<pre style="display:inline;">(==)</pre>
+でこれらの性質が保持されていることを示せ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre style="display:inline;">Bool</pre>
+が
+<pre style="display:inline;">Eq</pre>
+クラスのインスタンスである宣言は以下のとおり．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>instance Eq Bool where
+  False == False = True
+  False == True  = False
+  True  == False = False
+  False == False = True</code></pre>
+<ul>
+<li><strong>反射律：</strong> 成り立つ．
+<pre style="display:inline;"> False == False かつ True == True </pre>
+だから．</li>
+<li><strong>推移律：</strong> 成り立つ．
+<pre style="display:inline;">x == y</pre>
+ならば(1)
+<pre style="display:inline;">x = False かつ y = False</pre>
+，または，(2)
+<pre style="display:inline;">x = True かつ y = True</pre>
+．(1)の場合2つめの仮定より
+<pre style="display:inline;">z = False</pre>
+ゆえに
+<pre style="display:inline;">x == z</pre>
+．(2)の場合2つめの仮定より
+<pre style="display:inline;">z = True</pre>
+ゆえに
+<pre style="display:inline;">x == z</pre>
+．</li>
+<li><strong>対称律：</strong> 成り立つ．
+<pre style="display:inline;">x == y</pre>
+ならば(1)
+<pre style="display:inline;">x = False かつ y = False</pre>
+，または，(2)
+<pre style="display:inline;">x = True かつ y = True</pre>
+．したがって，反射律より
+<pre style="display:inline;">y == x</pre>
+．</li>
+</ul></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-12</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.4.1</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.4.1</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.4.1">練習問題 4.4.1</h3>
+<pre style="display:inline;">unzip [⊥]</pre>
+はどうなるか． (⊥,⊥) ≠ ⊥であることを使って，
+<pre style="display:inline;">zipp (unzip xys) ≠ xys</pre>
+となるようなリスト
+<pre style="display:inline;">xys</pre>
+を構成せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre style="display:inline;">unzip [⊥]</pre>
+の値は，
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>    unzip [⊥]
+=       { unzip の定義 }
+    pair (map fst, map snd) [⊥]
+=       { pair の定義 }
+    (map fst [⊥], map snd [⊥])
+=       { map の定義 } 
+    (fst ⊥ : map fst [], snd ⊥ : map snd [])
+=       { fst，snd，map の定義 }
+    ([⊥],[⊥])</code></pre>
+である．ここで
+<pre style="display:inline;">zipp (unzip [⊥])</pre>
+は
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>    zipp (unzipp [⊥])
+=       { 前述の運算 }
+    zipp ([⊥],[⊥])
+=       { zipp の定義 }
+    uncurry zip ([⊥],[⊥])
+=       { uncurry の定義 }
+    zip (fst ([⊥],[⊥])) (snd ([⊥],[⊥]))
+=       { fst，snd の定義 }
+    zip [⊥] [⊥]
+=       { zip の定義 }
+    (⊥,⊥) : zip [] []
+=       { zip の定義 }
+    [(⊥,⊥)]</code></pre>
+ここで，
+<pre style="display:inline;">(⊥,⊥) ≠ ⊥</pre>
+であるから，
+<pre style="display:inline;">[(⊥,⊥)] ≠ [⊥]</pre>
+である．すなわち，
+<pre style="display:inline;">xys = [⊥]</pre>
+のとき，
+<pre style="display:inline;">zipp (unzip xys) ≠ xys</pre> 
+となる．
+<pre style="display:inline;"></pre>
+
+
+</div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-02</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

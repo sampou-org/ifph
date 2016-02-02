@@ -1,0 +1,97 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 5.1.5</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 5.1.5</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-5.1.5">練習問題 5.1.5</h3>
+かなり難易度の高い練習問題として，
+<pre style="display:inline;">convert</pre>
+の逆を行うような関数を書け． すなわち，数を英語表現で入力し，それに対応する10進表現を出力する関数を書け．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">rconvert  ::</span>  <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+rconvert  <span class="fu">=</span>   rconvert9 <span class="fu">.</span> noiseCancel
+
+<span class="ot">noiseCancel ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+noiseCancel <span class="fu">=</span> filter (<span class="fu">/=</span> <span class="st">&quot;and&quot;</span>) <span class="fu">.</span> words <span class="fu">.</span> map hyphen2space
+
+<span class="ot">hyphen2space ::</span> <span class="dt">Char</span> <span class="ot">-&gt;</span> <span class="dt">Char</span>
+hyphen2space c  <span class="fu">=</span>   <span class="kw">if</span> c <span class="fu">==</span> <span class="ch">'-'</span> <span class="kw">then</span> <span class="ch">' '</span> <span class="kw">else</span> c
+
+<span class="ot">rconvert9  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
+rconvert9  <span class="fu">=</span>   ncombine9 <span class="fu">.</span> nums9
+
+<span class="ot">nums9  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> ([<span class="dt">String</span>],[<span class="dt">String</span>])
+nums9  <span class="fu">=</span>   splitBy (<span class="fu">==</span> <span class="st">&quot;million&quot;</span>)
+
+<span class="ot">ncombine9  ::</span>  ([<span class="dt">String</span>],[<span class="dt">String</span>]) <span class="ot">-&gt;</span> <span class="dt">Int</span>
+ncombine9  <span class="fu">=</span>   uncurry ((<span class="fu">+</span>) <span class="fu">.</span> (<span class="dv">1000000</span><span class="fu">*</span>)) <span class="fu">.</span> cross (rconvert3, rconvert6)
+
+<span class="ot">rconvert6  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
+rconvert6  <span class="fu">=</span>   ncombine6 <span class="fu">.</span> nums6
+
+<span class="ot">nums6  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> ([<span class="dt">String</span>],[<span class="dt">String</span>])
+nums6  <span class="fu">=</span>   splitBy (<span class="fu">==</span> <span class="st">&quot;thousand&quot;</span>)
+
+<span class="ot">ncombine6  ::</span>  ([<span class="dt">String</span>],[<span class="dt">String</span>]) <span class="ot">-&gt;</span> <span class="dt">Int</span>
+ncombine6  <span class="fu">=</span>   uncurry ((<span class="fu">+</span>) <span class="fu">.</span> (<span class="dv">1000</span><span class="fu">*</span>)) <span class="fu">.</span> cross (rconvert3, rconvert3)
+
+<span class="ot">rconvert3  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
+rconvert3  <span class="fu">=</span>   ncombine3 <span class="fu">.</span> nums3
+
+<span class="ot">nums3  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> ([<span class="dt">String</span>],[<span class="dt">String</span>])
+nums3  <span class="fu">=</span>   splitBy (<span class="fu">==</span> <span class="st">&quot;hundred&quot;</span>)
+
+<span class="ot">ncombine3  ::</span>  ([<span class="dt">String</span>],[<span class="dt">String</span>]) <span class="ot">-&gt;</span> <span class="dt">Int</span>
+ncombine3  <span class="fu">=</span>   uncurry ((<span class="fu">+</span>) <span class="fu">.</span> (<span class="dv">100</span><span class="fu">*</span>)) <span class="fu">.</span> cross (rconvert2, rconvert2)
+
+<span class="ot">rconvert2  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
+rconvert2  <span class="fu">=</span>   ncombine2 <span class="fu">.</span> nums2
+
+<span class="ot">nums2  ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> ([<span class="dt">String</span>],[<span class="dt">String</span>])
+nums2  <span class="fu">=</span>   break (<span class="ot">`elem`</span> unitsTeens)
+
+<span class="ot">ncombine2  ::</span>  ([<span class="dt">String</span>],[<span class="dt">String</span>]) <span class="ot">-&gt;</span> <span class="dt">Int</span>
+ncombine2  <span class="fu">=</span> uncurry (<span class="fu">+</span>) <span class="fu">.</span> cross (rconv', rconv'')
+
+<span class="ot">rconv'' ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
+rconv'' []    <span class="fu">=</span> <span class="dv">0</span>
+rconv'' (x<span class="fu">:</span>_) <span class="fu">=</span> search (zip unitsTeens [<span class="dv">1</span> <span class="fu">..</span> <span class="dv">19</span>]) x
+
+<span class="ot">rconv'        ::</span>  [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span>
+rconv' []     <span class="fu">=</span>   <span class="dv">0</span>
+rconv' (x<span class="fu">:</span>_)  <span class="fu">=</span>   search (zip tens [<span class="dv">20</span>,<span class="dv">30</span> <span class="fu">..</span> <span class="dv">90</span>]) x
+
+<span class="ot">search  ::</span>  [(<span class="dt">String</span>,<span class="dt">Int</span>)] <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+search [] _          <span class="fu">=</span>   <span class="dv">0</span>
+search ((x,n)<span class="fu">:</span>xs) s  <span class="fu">=</span>   <span class="kw">if</span> x <span class="fu">==</span> s <span class="kw">then</span> n <span class="kw">else</span> search xs s
+
+<span class="ot">unitsTeens  ::</span> [<span class="dt">String</span>]
+unitsTeens  <span class="fu">=</span>   (units <span class="fu">++</span> teens)
+
+<span class="ot">splitBy ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> ([a],[a])
+splitBy p xs  <span class="fu">=</span>   <span class="kw">case</span> break p xs <span class="kw">of</span>
+  (ys,[])   <span class="ot">-&gt;</span>  ([],ys)
+  (ys,_<span class="fu">:</span>zs) <span class="ot">-&gt;</span>  (ys,zs)</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-06-01</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.2.5</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.2.5</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.2.5">練習問題 3.2.5</h3>
+<pre style="display:inline;">*</pre>
+が
+<pre style="display:inline;">+</pre>
+上で分配的であること，すなわち，任意の自然数
+<pre style="display:inline;">k</pre>
+，
+<pre style="display:inline;">m</pre>
+，
+<pre style="display:inline;">n</pre>
+<p>に対して</p>
+<pre class="spec"><code>k * (m + n) = (k * m) + (k * n)</code></pre>
+であることを証明せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre style="display:inline;">n</pre>
+上の帰納法による．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>⊥の場合
+左辺
+    k * (m + ⊥)
+=   { + の定義．場合の枯渇 }
+    k * ⊥
+=   { * の定義．場合の枯渇 }
+    ⊥
+右辺
+    (k * m) + (k * ⊥)
+=   { * の定義．場合の枯渇 }
+    (k * m) + ⊥
+=   { + の定義．場合の枯渇 }
+    ⊥
+
+Zero の場合
+    k * (m + Zero)
+=   { + の定義 }
+    k * m
+=   { + の定義 }
+    k * m + Zero
+=   { * の定義 }
+    k * m + k * Zero
+
+Succ n の場合
+    k * (m + Succ n)
+=   { + の定義 }
+    k * Succ (m + n)
+=   { * の定義 }
+    k * (m + n) + k
+=   { 帰納法の仮定 }
+    ((k * m) + (k * n)) + k
+=   { + の結合性 }
+    (k * m) + ((k * n) + k)
+=   { * の定義 }
+    (k * m) + (k * Succ n)</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-17</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.7.2</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.7.2</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.7.2">練習問題 3.7.2</h3>
+<pre style="display:inline;">arrow2 m n = m n</pre>
+を考えたとき，なぜこれがチャーチ数のn<sup>m</sup>であるといえるのか．
+<pre style="display:inline;">arrow2</pre>
+の型はどうなっているか．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre style="display:inline;">arrow2 cn dn</pre>
+は
+<pre style="display:inline;">dn</pre>
+回適用する関数を
+<pre style="display:inline;">cn</pre>
+回適用するので，
+<pre style="display:inline;">arrow2 cn dn f</pre>
+は
+<pre style="display:inline;">f</pre>
+をdn<sup>cn</sup>回適用する．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">arrow2 ::</span> <span class="dt">Cnum</span> (a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> <span class="dt">Cnum</span> a <span class="ot">-&gt;</span> <span class="dt">Cnum</span> a
+arrow2 cn dn <span class="fu">=</span> cn dn</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-05</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

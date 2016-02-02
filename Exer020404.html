@@ -1,0 +1,52 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 2.4.4.</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 2.4.4.</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-2.4.4.">練習問題 2.4.4.</h3>
+<pre style="display:inline;">a</pre>
+および
+<pre style="display:inline;">b</pre>
+がともに型クラス
+<pre style="display:inline;">Enum</pre>
+のインスタンスであるとき，
+<pre style="display:inline;">(a,b)</pre>
+を
+<pre style="display:inline;">Enum</pre>
+のインスタンスとして宣言することは可能か．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<p>たとえば，以下のようにすれば可能</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> (<span class="dt">Enum</span> a, <span class="dt">Enum</span> b) <span class="ot">=&gt;</span> <span class="dt">Enum</span> (a,b) <span class="kw">where</span>
+  fromEnum (x,y) <span class="fu">=</span> <span class="kw">if</span> ix <span class="fu">&gt;=</span> iy <span class="kw">then</span> ix<span class="fu">^</span><span class="dv">2</span> <span class="fu">+</span> iy <span class="kw">else</span> (iy <span class="fu">+</span> <span class="dv">1</span>)<span class="fu">^</span><span class="dv">2</span> <span class="fu">-</span> ix <span class="fu">-</span><span class="dv">1</span>
+    <span class="kw">where</span>  ix <span class="fu">=</span> fromEnum x
+           iy <span class="fu">=</span> fromEnum y
+  toEnum i <span class="fu">=</span> <span class="kw">if</span> i<span class="fu">-</span>o2 <span class="fu">&lt;=</span> o'2 <span class="fu">-</span> i <span class="kw">then</span> (toEnum o,toEnum d)
+             <span class="kw">else</span> (toEnum d',toEnum o)
+    <span class="kw">where</span> o  <span class="fu">=</span> floor (sqrt (fromIntegral i))
+          o2  <span class="fu">=</span> o    <span class="fu">^</span><span class="dv">2</span>
+          o'2 <span class="fu">=</span> (o<span class="fu">+</span><span class="dv">1</span>)<span class="fu">^</span><span class="dv">2</span>
+          d   <span class="fu">=</span> i   <span class="fu">-</span> o2
+          d'  <span class="fu">=</span> o'2 <span class="fu">-</span> i <span class="fu">-</span> <span class="dv">1</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-15</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

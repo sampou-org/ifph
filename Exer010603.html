@@ -1,0 +1,101 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 1.6.3</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 1.6.3</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-1.6.3">練習問題 1.6.3</h3>
+以下の関数
+<pre style="display:inline;">strange</pre>
+および
+<pre style="display:inline;">stranger</pre>
+に対して多相型を割り当てられるか．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>strange  f g = g (f g)
+stranger f   = f f</code></pre>
+<hr></hr>
+<pre style="display:inline;">strange</pre>
+の型
+<pre style="display:inline;"></pre>
+
+<ul>
+<li><pre style="display:inline;">strange</pre> 
+の定義より
+<pre style="display:inline;">f</pre>
+と
+<pre style="display:inline;">g</pre>
+は関数である</li>
+<li><pre style="display:inline;">f :: a -&gt; b</pre>
+と
+<pre style="display:inline;">g :: c -&gt; d</pre>
+を仮定する</li>
+<li>直前の仮定より
+<pre style="display:inline;">strange :: (a -&gt; b) -&gt; (c -&gt; d) -&gt; d</pre>
+である</li>
+<li><pre style="display:inline;">f g</pre>
+がきちんと定義された型をもつならa = c -&gt; d</li>
+<li>したがって，
+<pre style="display:inline;">f :: (c -&gt; d) -&gt; b</pre>
+，
+<pre style="display:inline;">g :: c -&gt; d</pre>
+，
+<pre style="display:inline;">f g :: b</pre>
+，
+<pre style="display:inline;">strange :: ((c -&gt; d) -&gt; b) -&gt; (c -&gt; d) -&gt; d</pre>
+である．</li>
+<li><pre style="display:inline;">g (f g)</pre>
+がきちんと定義された型をもつなら，
+<pre style="display:inline;">c = b</pre>
+である．</li>
+<li>したがって，
+<pre style="display:inline;">f :: (c -&gt; d) -&gt; c</pre>
+，
+<pre style="display:inline;">g :: c -&gt; d</pre>
+，
+<pre style="display:inline;">strange :: ((c -&gt; d) -&gt; c) -&gt; (c -&gt; d) -&gt; d</pre>
+である．</li>
+</ul>
+<pre style="display:inline;">stranger</pre>
+の型
+<pre style="display:inline;"></pre>
+
+<ul>
+<li><pre style="display:inline;">f</pre>
+は型
+<pre style="display:inline;">f :: a -&gt; b</pre>
+とする</li>
+<li><pre style="display:inline;">stranger :: (a -&gt; b) -&gt; c</pre>
+である</li>
+<li><pre style="display:inline;">f f</pre>
+がきちんと定義された型をもつなら
+<pre style="display:inline;">c = b</pre>
+かつ
+<pre style="display:inline;">a = a -&gt; b</pre>
+である</li>
+<li>しかし，
+<pre style="display:inline;">a = a -&gt; b</pre>
+はきちんと型付けできない</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strange ::</span>  ((a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b
+strange f g <span class="fu">=</span> g (f g)</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-11</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

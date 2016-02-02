@@ -1,0 +1,92 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.5.12</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.5.12</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.5.12">練習問題 4.5.12</h3>
+<pre style="display:inline;">scanr1</pre>
+に対する効率の良いプログラムを導出せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">tails1 ::</span> [a] <span class="ot">-&gt;</span> [[a]]
+tails1 []  <span class="fu">=</span> []
+tails1 [x] <span class="fu">=</span> [[x]]
+tails1 xxs<span class="fu">@</span>(_<span class="fu">:</span>xs) <span class="fu">=</span> xxs <span class="fu">:</span> tails1 xs
+
+scanr1 _ []     <span class="fu">=</span> []
+scanr1 _ [x]    <span class="fu">=</span> [x]
+scanr1 f (x<span class="fu">:</span>xs) <span class="fu">=</span> f x (head ys) <span class="fu">:</span> ys
+                  <span class="kw">where</span> ys <span class="fu">=</span> scanr1 f xs </code></pre>
+<pre class="spec"><code>[] の場合
+     scanr1 f []
+=        { scanr1 の定義 }
+     (map (foldr1 f) . tails1) []
+=        { . の定義 }
+     map (foldr1 f) (tails1 [])
+=        { tails1 の定義 }
+     map (foldr1 f) []
+=        { map の定義 }
+     []
+
+[x] の場合
+     scanr1 f [x]
+=        { scanr1 の定義 }
+     (map (foldr1 f) . tails1) [x]
+=        { . の定義 }
+     map (foldr1 f) (tails1 [x])
+=        { tails1 の定義 }
+     map (foldr1 f) ([x]:[])
+=        { map の定義 }
+     foldr1 f [x] : map (foldr1 f) []
+=        { map の定義 }
+     foldr1 f [x] : []
+=        { foldr1 の定義 }
+     (if null [] then x else f x (foldr1 f [])) : []
+=        { null [] = True だから }
+     x : []
+=        { リストのリテラル表記 }
+     [x]
+
+x:xs (null xs = False)の場合
+     scanr1 f (x:xs)
+=        { scanr1 の定義 }
+     (map (foldr1 f) . tails1) (x:xs)
+=        { . の定義 }
+     map (foldr1 f) (tails1 (x:xs))
+=        { tails1 の定義 }
+     map (foldr1 f) ((x:xs):tails1 xs)
+=        { map の定義 } 
+     foldr1 f (x:xs) : map (foldr1 f) (tails1 xs)
+=        { foldr1 の定義 }
+     (if null xs then x else f x (foldr1 f xs)) : map (foldr1 f) (tails1 xs)
+=        { null xs = False }
+     f x (foldr1 f xs) : map (foldr1 f) (tails1 xs)
+=        { 任意の g について head (map g (tails1 xs)) = g xs であるから }
+     f x (head (map (foldr1 f) (tails1 xs))) : map (foldr1 f) (tails1 xs)
+=        { scanr1 の定義 }
+     f x (head (scanr1 f xs)) : scanr1 f xs
+=        { ys = scanr1 f xs とおいて }
+     f x (head ys) : ys
+         where  ys = scanr1 f xs</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-17</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

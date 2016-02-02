@@ -1,0 +1,99 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.2.6</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.2.6</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.2.6">練習問題 4.2.6</h3>
+すべての無限リスト
+<pre style="display:inline;">xs</pre>
+について
+<pre style="display:inline;">reverse xs = ⊥</pre>
+であることを証明し，
+<pre style="display:inline;">init = reverse . tail . reverse</pre>
+であるとき，すべての無限リスト
+<pre style="display:inline;">xs</pre>
+について
+<pre style="display:inline;">init xs = ⊥</pre>
+であることを示せ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+すべての無限リスト
+<pre style="display:inline;">xs</pre>
+について
+<pre style="display:inline;">reverse xs = ⊥</pre>
+であることの証明
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>xs上の帰納法で示す．
+
+⊥の場合
+
+    reverse ⊥
+=       { 場合の枯渇 }
+    ⊥
+
+x:xs の場合
+
+    reverse (x:xs)
+=       { reverseの定義 }
+    reverse xs ++ [x]
+=       { 帰納法の仮定 }
+    ⊥ ++ [x]
+=       { 場合の枯渇 }
+    ⊥</code></pre>
+すべての無限リスト
+<pre style="display:inline;">xs</pre>
+について
+<pre style="display:inline;">init xs = ⊥</pre>
+<p>であることの証明．</p>
+<pre class="spec"><code>xs上の帰納法で示す．
+
+⊥の場合
+
+    init ⊥
+=       { initの定義 }
+    (reverse . tail . reverse) ⊥
+=       { (.)の定義 }
+    reverse (tail (reverse ⊥))
+=       { 直前の証明 }
+    reverse (tail ⊥)
+=       { 場合の枯渇 }
+    reverse ⊥
+=       { 直前の証明 }
+    ⊥
+
+x:xs の場合
+
+    init (x:xs)
+=       { initの定義 }
+    (reverse . tail . reverse) (x:xs)
+=       { (.)の定義 }
+    reverse (tail (reverse (x:xs)))
+=       { 直前の証明 }
+    reverse (tail ⊥)
+=       { 場合の枯渇 }
+    reverse ⊥
+=       { 直前の証明 }
+    ⊥</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-12-21</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

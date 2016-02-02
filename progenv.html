@@ -1,0 +1,46 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>プログラミング環境</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— プログラミング環境</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h2 id="haskell-platform">Haskell Platform</h2>
+<p>Haskellプログラミングの環境はHaskell Platformをインストールして使うのがよいでしょう．以下のサイトにアクセスしてPCの環境にあわせてインストールしてください．</p>
+<p><a href="http://www.haskell.org/platform/">http://www.haskell.org/platform/</a></p>
+<h2 id="ghciのプロンプト">GHCiのプロンプト</h2>
+<p>GHCiのプロンプトをテキストのように「? 」にするには ghci を起動後 :set コマンドを用いてプロンプトを変更します．</p>
+<pre><code>$ ghci
+Prelude&gt; :set prompt &quot;? &quot;
+? _</code></pre>
+<h2 id="言語拡張指定">言語拡張指定</h2>
+<p>本書のプログラムを現在の Haskell Platform $platform に含まれる GHCi で扱うにはHaskell 98に準拠したコードを扱うことを GHCi に示す必要があります． それに以下の4つの方法があります．</p>
+<h4 id="ghci起動時にオプションで指定">ghci起動時にオプションで指定</h4>
+<pre><code>$ ghci -XHaskell98</code></pre>
+<h4 id="ghciのプロンプトで指定">ghciのプロンプトで指定</h4>
+<pre><code>Prelude&gt; :set -XHaskell98</code></pre>
+<h4 id="ghci-ファイルで指定">.ghci ファイルで指定</h4>
+<pre><code>$ cat ~/.ghci
+:set -XHaskell98</code></pre>
+<h4 id="languageプラグマで指定ソースファイルの先頭部分に書く">LANGUAGEプラグマで指定（ソースファイルの先頭部分に書く）</h4>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE Haskell98 #-}</span>
+<span class="kw">module</span> <span class="dt">Foo</span> <span class="kw">where</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-10-19</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

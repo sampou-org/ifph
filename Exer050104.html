@@ -1,0 +1,48 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 5.1.4</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 5.1.4</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-5.1.4">練習問題 5.1.4</h3>
+<p>英国通貨の金額を表す数を言葉に変換するプログラムを書け． たとえば，数3649は thirty-six pounds and forty-nine pence に変換されるようにせよ．</p>
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">convertc  ::</span>  <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+convertc  <span class="fu">=</span>   combine <span class="fu">.</span> poundsPence
+
+<span class="ot">poundsPence  ::</span>  <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">Int</span>, <span class="dt">Int</span>)
+poundsPence  <span class="fu">=</span>   (<span class="ot">`divMod`</span> <span class="dv">100</span>)
+
+<span class="ot">combine  ::</span>  (<span class="dt">Int</span>,<span class="dt">Int</span>) <span class="ot">-&gt;</span> <span class="dt">String</span>
+combine (<span class="dv">0</span>,<span class="dv">0</span>)      <span class="fu">=</span>   <span class="st">&quot;&quot;</span>
+combine (<span class="dv">0</span>,q<span class="fu">+</span><span class="dv">1</span>)    <span class="fu">=</span>   convertPence (q<span class="fu">+</span><span class="dv">1</span>)
+combine (p<span class="fu">+</span><span class="dv">1</span>,<span class="dv">0</span>)    <span class="fu">=</span>   convertPounds (p<span class="fu">+</span><span class="dv">1</span>)
+combine (p<span class="fu">+</span><span class="dv">1</span>,q<span class="fu">+</span><span class="dv">1</span>)  <span class="fu">=</span>   convertPounds (p<span class="fu">+</span><span class="dv">1</span>) <span class="fu">++</span> <span class="st">&quot; &quot;</span> <span class="fu">++</span> convertPence (q<span class="fu">+</span><span class="dv">1</span>)
+
+<span class="ot">convertPence        ::</span>  <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+convertPence <span class="dv">1</span>      <span class="fu">=</span>   <span class="st">&quot;one penny&quot;</span>
+convertPence (n<span class="fu">+</span><span class="dv">1</span>)  <span class="fu">=</span>   convert (n<span class="fu">+</span><span class="dv">1</span>) <span class="fu">++</span> <span class="st">&quot; pence&quot;</span>
+
+<span class="ot">convertPounds        ::</span>  <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+convertPounds <span class="dv">1</span>      <span class="fu">=</span>   <span class="st">&quot;one pound&quot;</span>
+convertPounds (n<span class="fu">+</span><span class="dv">1</span>)  <span class="fu">=</span>   convert (n<span class="fu">+</span><span class="dv">1</span>) <span class="fu">++</span> <span class="st">&quot; pounds&quot;</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-06-01</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

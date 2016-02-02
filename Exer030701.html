@@ -1,0 +1,40 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.7.1</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.7.1</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.7.1">練習問題 3.7.1</h3>
+引数が
+<pre style="display:inline;">zero</pre>
+かどうかを決定する関数
+<pre style="display:inline;">isZero :: Cnum a -&gt; Cbool a</pre>
+の定義を書け．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">isZero ::</span> <span class="dt">Cnum</span> a <span class="ot">-&gt;</span> <span class="dt">Cbool</span> a
+isZero cn x y <span class="fu">=</span> cn (true y) x</code></pre>
+<p>以下は最初に作った版．シグネチャが違う．．．orz</p>
+<pre class="spec"><code>isZero :: Cnum (Cbool a) -&gt; Cbool a
+isZero n = n (true false) true</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-23</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.3.11</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.3.11</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.3.11">練習問題 4.3.11</h3>
+<p>以下のリスト内包表記をコンビネータを用いたスタイルに変換せよ．</p>
+<pre class="spec"><code>[(x,y) | x &lt;- [1 .. n], odd x, y &lt;- [1 .. n]]
+[(x,y) | x &lt;- [1 .. n], y &lt;- [1 .. n], odd x]</code></pre>
+この2つは等しいか．2つの式の評価コストを比較せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre style="display:inline;">[(x,y) | x &lt;- [1..n], odd x, y &lt;- [1..n]]</pre>
+
+<pre class="spec"><code>    [(x,y) | x &lt;- [1..n], odd x, y &lt;- [1..n]]
+=       { 生成規則 }
+    concat (map f [1..n]) 
+      where f x = [(x,y) | odd x, y &lt;- [1..n]]
+=       { ガード規則 }
+    concat (map f [1..n]) 
+      where f x = if odd x then [(x,y) | y &lt;- [1..n]] else []
+=       { 生成規則 }
+    concat (map f [1..n]) 
+      where f x = if odd x then concat (map g [1..n]) else []
+                    where g y = (x,y)</code></pre>
+<pre style="display:inline;">[(x,y) | x &lt;- [1..n],  y &lt;- [1..n], odd x]</pre>
+
+<pre class="spec"><code>    [(x,y) | x &lt;- [1..n],  y &lt;- [1..n], odd x]
+=       { 生成規則 }
+    concat (map f xs)
+      where f x = [ (x,y) | y &lt;- [1 .. n], odd x ]
+=       { 生成規則 }
+    concat (map f [1..n])
+      where f x = concat (map g [1..n]) 
+                    where g y = [(x,y) | odd x]
+=       { ガード規則 }
+    concat (map f [1..n])
+      where f x = concat (map g [1..n])
+                    where g y = if odd x then [(x,y)] else []</code></pre>
+<p>前者では odd x の検査が n 回，後者では n^2 回である．</p></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

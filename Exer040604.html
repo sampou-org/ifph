@@ -1,0 +1,98 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.6.4</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.6.4</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.6.4">練習問題 4.6.4</h3>
+<p>以下の等式を証明せよ．</p>
+<pre class="spec"><code>foldr f a (xs++ys) = foldr f (foldr f a ys) xs
+foldl f a (xs++ys) = foldl f (foldl f a xs) ys</code></pre>
+もし必要だとすれば，
+<pre style="display:inline;">xs</pre>
+，
+<pre style="display:inline;">ys</pre>
+に対してどのような制限が必要か．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<p>foldr f a (xs++ys) = foldr f (foldr f a ys) xs の証明は xs 上の帰納法でおこなう．</p>
+<pre class="spec"><code>⊥の場合
+    foldr f a (⊥++ys)
+=       { ++ の定義，場合の枯渇 }
+    foldr f a ⊥
+=       { foldr の定義，場合の枯渇 }
+    ⊥
+=       { foldr の定義，場合の枯渇 }
+    foldr f (foldr f a ys) ⊥
+
+[]の場合
+    foldr f a ([]++ys)
+=       { ++ の定義 }
+    foldr f a ys
+=       { foldr の定義 }
+    foldr f (foldr f a ys) []
+
+x:xs の場合
+    foldr f a (x:xs ++ ys)
+=       { ++ の定義 }
+    foldr f a (x:(xs ++ ys))
+=       { foldr の定義 }
+    f x (foldr f a (xs++ys))
+=       { 帰納法の仮定 }
+    f x (foldr f (foldr f a ys) xs)
+=       { foldr の定義 }
+    foldr f (foldr f a ys) (x:xs)</code></pre>
+<p>foldl f a (xs++ys) = foldl f (foldl f a xs) ys の証明は xs 上の帰納法でおこなう．</p>
+<pre class="spec"><code>⊥の場合
+
+    foldl f a (⊥++ys)
+=       { ++ の定義，場合の枯渇 }
+    foldl f a ⊥
+=       { foldl の定義，場合の枯渇 }
+    ⊥
+
+    foldl f (foldl f a []) ys
+=       { foldl の定義，場合の枯渇 }
+    foldl f ⊥ ys
+
+一般には ⊥ ＝ foldl f ⊥ ys ではない．
+
+[]の場合
+    foldl f a ([]++ys)
+=       { ++ の定義 }
+    foldl f a ys
+=       { foldl の定義 }
+    foldl f (fold f a []) ys
+
+x:xs の場合
+    foldl f a ((x:xs)++ys)
+=       { ++ の定義 }
+    foldl f a (x:(xs++ys))
+=       { foldl の定義 }
+    foldl f (f a x) (xs++ys)
+=       { 帰納法の仮定 }
+    foldl f (foldl f (f a x) xs) ys
+=       { foldl の定義 }
+    foldl f (foldl f a (x:xs)) ys</code></pre>
+<p>foldr に関する法則の場合は任意のxs，ysについて成り立つ foldl に関する法則の場合は任意の有限リストxs，と任意のリストysについて成り立つ</p></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-17</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

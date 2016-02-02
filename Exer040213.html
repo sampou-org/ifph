@@ -1,0 +1,67 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.2.13</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.2.13</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.2.13">練習問題 4.2.13</h3>
+<p>連接はリスト上の基本操作であるように見えるので，連接をプリミティブとしてデータ型を構成してみよう． たとえば，</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">CatList</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> <span class="dt">Wrap</span> a <span class="fu">|</span> <span class="dt">Cat</span> (<span class="dt">CatList</span> a) (<span class="dt">CatList</span> a)</code></pre>
+とする．
+<pre style="display:inline;">Nil</pre>
+は
+<pre style="display:inline;">[]</pre>
+，
+<pre style="display:inline;">Wrap x</pre>
+は
+<pre style="display:inline;">[x]</pre>
+，
+<pre style="display:inline;">Cat xs ys</pre>
+は
+<pre style="display:inline;">xs++ys</pre>
+をそれぞれ表すためのものである．しかし，
+<pre style="display:inline;">++</pre>
+は結合性のある演算子なので，以下の2つの式は等しいとみなすべきである．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>Cat xs (Cat ys zs) と Cat (Cat xs ys) zs</code></pre>
+<pre style="display:inline;">CatList</pre>
+について
+<pre style="display:inline;">Eq</pre>
+クラスのインスタンスと
+<pre style="display:inline;">Ord</pre>
+クラスのインスタンスを適切に定義せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">toList ::</span> <span class="dt">CatList</span> a <span class="ot">-&gt;</span> [a]
+toList <span class="dt">Nil</span>      <span class="fu">=</span> []
+toList (<span class="dt">Wrap</span> x) <span class="fu">=</span> [x]
+toList (<span class="dt">Cat</span> <span class="dt">Nil</span> ys) <span class="fu">=</span> toList ys
+toList (<span class="dt">Cat</span> (<span class="dt">Wrap</span> x) ys) <span class="fu">=</span> x <span class="fu">:</span> toList ys
+toList (<span class="dt">Cat</span> (<span class="dt">Cat</span> xs xs') ys) <span class="fu">=</span> toList xs <span class="fu">++</span> toList (<span class="dt">Cat</span> xs' ys)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> <span class="dt">Eq</span> (<span class="dt">CatList</span> a) <span class="kw">where</span>
+  xs <span class="fu">==</span> ys <span class="fu">=</span> toList xs <span class="fu">==</span> toList ys
+
+<span class="kw">instance</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> <span class="dt">Ord</span> (<span class="dt">CatList</span> a) <span class="kw">where</span>
+  xs <span class="fu">&lt;=</span> ys <span class="fu">=</span> toList xs <span class="fu">&lt;=</span> toList ys</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

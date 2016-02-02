@@ -1,0 +1,81 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.1.4</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.1.4</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.1.4">練習問題 4.1.4</h3>
+<p>本文のリストと双対になるリストの見方として，リストの後に要素を加えてリストを構成するというものがある．</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Liste</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> <span class="dt">Snoc</span> (<span class="dt">Liste</span> a) a</code></pre>
+<pre style="display:inline;">Snoc</pre>
+はもちろん
+<pre style="display:inline;">Cons</pre>
+を逆順に綴ったものである. このようなリストの見方では，
+<pre style="display:inline;">[1,2,3]</pre>
+は以下のような
+<pre style="display:inline;">Liste Int</pre>
+の値として表現されることになる．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>Snoc (Snoc (Snoc Nil 1) 2) 3</code></pre>
+2つの見方からは全く同じ情報が得られるが，その組み立てられ方は違う． たとえば，空ではないリストの最初の要素を返す関数
+<pre style="display:inline;">head</pre>
+を
+<pre style="display:inline;">[a]</pre>
+型に対して定義するのはやさしい． しかし，これを
+<pre style="display:inline;">Liste a</pre>
+に対して定義するのは複雑である． 2つのリスト型に対して
+<pre style="display:inline;">head</pre>
+を定義せよ． また，一方の型から他方の型への変換を行う関数
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">convert ::</span> <span class="dt">Liste</span> a <span class="ot">-&gt;</span> [a]</code></pre>
+<p>を定義せよ．</p>
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sample  ::</span> [<span class="dt">Int</span>]
+sample  <span class="fu">=</span>  [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]
+
+<span class="ot">sample' ::</span> <span class="dt">Liste</span> <span class="dt">Int</span>
+sample' <span class="fu">=</span>  <span class="dt">Snoc</span> (<span class="dt">Snoc</span> (<span class="dt">Snoc</span> <span class="dt">Nil</span> <span class="dv">1</span>) <span class="dv">2</span>) <span class="dv">3</span>
+
+head<span class="ot">       ::</span> [a] <span class="ot">-&gt;</span> a
+head (x<span class="fu">:</span>_) <span class="fu">=</span> x
+head []    <span class="fu">=</span> error <span class="st">&quot;head applied empty&quot;</span>
+
+<span class="ot">head' ::</span> <span class="dt">Liste</span> a <span class="ot">-&gt;</span> a
+head' (<span class="dt">Snoc</span> <span class="dt">Nil</span> x)  <span class="fu">=</span> x
+head' (<span class="dt">Snoc</span> xs  _)  <span class="fu">=</span> head' xs
+head' <span class="dt">Nil</span>           <span class="fu">=</span> error <span class="st">&quot;head' applied empty&quot;</span>
+
+<span class="co">{-</span>
+<span class="co">convert xs = conv [] xs</span>
+<span class="co">  where</span>
+<span class="co">    conv ys Nil = ys</span>
+<span class="co">    conv ys (Snoc zs z) = conv (z:ys) zs</span>
+<span class="co">-}</span>
+
+convert <span class="dt">Nil</span>         <span class="fu">=</span> []
+convert (<span class="dt">Snoc</span> xs x) <span class="fu">=</span> convert xs <span class="fu">++</span> [x]
+
+<span class="ot">convert' ::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Liste</span> a
+convert' <span class="fu">=</span>  foldl <span class="dt">Snoc</span> <span class="dt">Nil</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-03-31</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

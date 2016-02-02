@@ -1,0 +1,38 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.5.10</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.5.10</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.5.10">練習問題 4.5.10</h3>
+数学の定数 e は e = <sub>n=0</sub><sup></sup> 1/n! と定義されている．e をある十分な精度で求める式を書け．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">e,<span class="ot">e' ::</span> <span class="dt">Double</span>
+e  <span class="fu">=</span> sum <span class="fu">$</span> takeWhile (<span class="fu">&gt;</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0</span>) <span class="fu">$</span> scanl (<span class="fu">/</span>) <span class="dv">1</span> [<span class="dv">1</span><span class="fu">..</span>]
+e' <span class="fu">=</span> sum <span class="fu">$</span> reverse <span class="fu">$</span> takeWhile (<span class="fu">&gt;</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0</span>) <span class="fu">$</span> scanl (<span class="fu">/</span>) <span class="dv">1</span> [<span class="dv">1</span><span class="fu">..</span>]</code></pre>
+<pre class="spec"><code>? e - exp 1
+4.440892098500626e-16
+? e' - exp 1
+0.0</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-03-30</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

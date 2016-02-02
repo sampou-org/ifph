@@ -1,0 +1,63 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 1.2.4</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 1.2.4</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-1.2.4">練習問題 1.2.4</h3>
+<p>直前の問題の続き．この言語にもう1つ構文規則を追加する． （iii）e<sub>1</sub>およびe<sub>2</sub>が式なら，add (e<sub>1</sub>,e<sub>2</sub>)も式である． これに対応する簡約規則は以下のとおり．</p>
+<pre class="spec"><code>add(zero,e2)     = e2 
+add(succ(e1),e2) = succ(add(e1,e2))
+add(pred(e1),e2) = pred(add(e1,e2))</code></pre>
+<p>式 add(succ(pred(zero)),zero) を単純化せよ．</p>
+<p>この式に適用できる簡約の方法が何通りあるか数えよ． どの方法でも同じ結果になるか．</p>
+<hr></hr>
+<pre class="spec"><code>(1) 外側から
+    add(succ(pred(zero)),zero)
+=   { add(succ(e1),e2) = succ(add(e1,e2)) }
+    succ(add(pred(zero),zero))
+=   { add(pred(e1),e2) = pred(add(e1,e2)) }
+    succ(pred(add(zero,zero)))
+=   { succ(pred(e)) = e }
+    add(zero,zero)
+=   { add(zero,e2) = e2 }
+    zero
+
+(2) addの簡約から
+    add(succ(pred(zero)),zero)
+=   { add(succ(e1),e2) = succ(add(e1,e2)) }
+    succ(add(pred(zero),zero))
+=   { add(pred(e1),e2) = pred(add(e1,e2)) }
+    succ(pred(add(zero,zero)))
+=   { add(zero,e2) = e2 }
+    succ(pred(zero))
+=   { succ(pred(e)) = e }
+    zero
+
+(3) 内側から
+    add(succ(pred(zero)),zero)
+=   { succ(pred(e)) = e }
+    add(zero,zero)
+=   { add(zero,e2) = e2 }
+    zero</code></pre>
+<p>簡約方法は3通り，どれも同じ結果になる．</p></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-23</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

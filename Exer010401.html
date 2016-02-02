@@ -1,0 +1,103 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 1.4.1</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 1.4.1</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-1.4.1">練習問題 1.4.1</h3>
+<pre style="display:inline;">f</pre>
+および
+<pre style="display:inline;">g</pre>
+が以下の型を持つとする．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>
+<span class="ot">g ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> (<span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>)</code></pre>
+<pre style="display:inline;">h</pre>
+を以下のように定義してみよう．
+<pre style="display:inline;"></pre>
+
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">h ::</span> <span class="dt">WhatType</span>
+h x y <span class="fu">=</span> f (g x y)</code></pre>
+<pre style="display:inline;">h</pre>
+に正しい型を割り当てよ． 次に，以下の表明のうち正しいものはどれか（あるだけすべて）答えよ．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>h     = f . g
+h x   = f . (g x)
+h x y = (f . g) x y</code></pre>
+<hr></hr>
+<p>型の割り当ては以下のとおり</p>
+<ul>
+<li><pre style="display:inline;">x</pre>
+は
+<pre style="display:inline;">g :: Integer -&gt; (Integer -&gt; Integer)</pre>
+の引数であるから
+<pre style="display:inline;">x :: Integer</pre></li>
+<li><pre style="display:inline;">y</pre>
+は
+<pre style="display:inline;">g x :: Integer -&gt; Integer</pre>
+の引数であるから
+<pre style="display:inline;">y :: Integer</pre></li>
+<li><pre style="display:inline;">g x y :: Integer</pre>
+であり
+<pre style="display:inline;">f (g x y) :: Integer</pre>
+であるから
+<pre style="display:inline;">h x y :: Integer</pre></li>
+<li>したがって
+<pre style="display:inline;">h :: Integer -&gt; Integer -&gt; Integer</pre>
+</li>
+</ul>
+<p>というわけで，</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">WhatType</span> <span class="fu">=</span>  <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span></code></pre>
+<pre style="display:inline;">h</pre>
+の定義から
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>    h x y = f (g x y)
+=   { g x y = (g x) y }
+    h x y = f ((g x) y)
+=   { (.) の定義 }
+    h x y = (f . g x) y
+=   { セクション }
+    h x y = ((f .) (g x)) y
+=   { 外延性の原理 }
+    h x = (f .) (g x)
+=   { セクション }
+    h x = f . (g x)
+=   { セクション }
+    h x = (f .) (g x)
+=   { (.) の定義 }
+    h x = ((f .) . g) x
+=   { 外延性の原理 }
+    h = (f .) . g</code></pre>
+したがって
+<pre style="display:inline;">h x = f . (g x)</pre>
+は正しい表明．
+<pre style="display:inline;">h = f . g</pre>
+と
+<pre style="display:inline;">h x y = (f . g) x y</pre>
+は外延性の原理により等価な表明であるが，型があわないのでともに正しい表明ではない．
+<pre style="display:inline;"></pre>
+
+</div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-13</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 2.7.3</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 2.7.3</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-2.7.3">練習問題 2.7.3</h3>
+日付は整数の3つ組
+<pre style="display:inline;">(d,m,y)</pre>
+を使って表現されているものとせよ．ただし，
+<pre style="display:inline;">d</pre>
+は日にち，
+<pre style="display:inline;">m</pre>
+は月，
+<pre style="display:inline;">y</pre>
+は年とする． 日付を引数としてとり，対応する日付を印字する関数
+<pre style="display:inline;">showDate</pre>
+を定義せよ． 使用例は以下のとおり．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>showDate (10,12,1997) は &quot;10 December, 1997&quot; と印字</code></pre>
+<p>さらに複雑な版を考え，以下のようになるよう改訂せよ．</p>
+<pre class="spec"><code>showDate (10,12,1997) は &quot;10th December, 1997&quot; と印字
+showDate (31,12,1997) は &quot;31st December, 1997&quot; と印字</code></pre>
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Day</span>    <span class="fu">=</span> <span class="dt">Int</span>
+<span class="kw">type</span> <span class="dt">Month</span>  <span class="fu">=</span> <span class="dt">Int</span>
+<span class="kw">type</span> <span class="dt">Year</span>   <span class="fu">=</span> <span class="dt">Int</span>
+<span class="kw">type</span> <span class="dt">Date</span>   <span class="fu">=</span> (<span class="dt">Day</span>,<span class="dt">Month</span>,<span class="dt">Year</span>)
+
+<span class="ot">daysMonth      ::</span>  <span class="dt">Year</span> <span class="ot">-&gt;</span> <span class="dt">Month</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+daysMonth y m  <span class="fu">=</span>   <span class="kw">case</span> m <span class="kw">of</span>
+  <span class="dv">2</span>  <span class="ot">-&gt;</span> <span class="dv">28</span> <span class="fu">+</span> leap y
+  <span class="dv">4</span>  <span class="ot">-&gt;</span> <span class="dv">30</span>
+  <span class="dv">6</span>  <span class="ot">-&gt;</span> <span class="dv">30</span>
+  <span class="dv">9</span>  <span class="ot">-&gt;</span> <span class="dv">30</span>
+  <span class="dv">11</span> <span class="ot">-&gt;</span> <span class="dv">30</span>
+  _  <span class="ot">-&gt;</span> <span class="dv">31</span>
+
+<span class="ot">leap ::</span> <span class="dt">Year</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+leap y <span class="fu">|</span> y <span class="ot">`mod`</span> <span class="dv">400</span> <span class="fu">==</span> <span class="dv">0</span> <span class="fu">=</span> <span class="dv">1</span>
+       <span class="fu">|</span> y <span class="ot">`mod`</span> <span class="dv">100</span> <span class="fu">==</span> <span class="dv">0</span> <span class="fu">=</span> <span class="dv">0</span>
+       <span class="fu">|</span> y <span class="ot">`mod`</span>   <span class="dv">4</span> <span class="fu">==</span> <span class="dv">0</span> <span class="fu">=</span> <span class="dv">1</span>
+       <span class="fu">|</span> otherwise        <span class="fu">=</span> <span class="dv">0</span>
+
+<span class="ot">monthName     ::</span>  <span class="dt">Month</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+monthName  <span class="dv">1</span>  <span class="fu">=</span>   <span class="st">&quot;January&quot;</span>
+monthName  <span class="dv">2</span>  <span class="fu">=</span>   <span class="st">&quot;February&quot;</span>
+monthName  <span class="dv">3</span>  <span class="fu">=</span>   <span class="st">&quot;March&quot;</span>
+monthName  <span class="dv">4</span>  <span class="fu">=</span>   <span class="st">&quot;April&quot;</span>
+monthName  <span class="dv">5</span>  <span class="fu">=</span>   <span class="st">&quot;May&quot;</span>
+monthName  <span class="dv">6</span>  <span class="fu">=</span>   <span class="st">&quot;June&quot;</span>
+monthName  <span class="dv">7</span>  <span class="fu">=</span>   <span class="st">&quot;July&quot;</span>
+monthName  <span class="dv">8</span>  <span class="fu">=</span>   <span class="st">&quot;August&quot;</span>
+monthName  <span class="dv">9</span>  <span class="fu">=</span>   <span class="st">&quot;September&quot;</span>
+monthName <span class="dv">10</span>  <span class="fu">=</span>   <span class="st">&quot;October&quot;</span>
+monthName <span class="dv">11</span>  <span class="fu">=</span>   <span class="st">&quot;November&quot;</span>
+monthName <span class="dv">12</span>  <span class="fu">=</span>   <span class="st">&quot;December&quot;</span>
+monthName m   <span class="fu">=</span>   error (<span class="st">&quot;monthName: invalid month number &quot;</span><span class="fu">++</span><span class="st">&quot;'&quot;</span><span class="fu">++</span>show m<span class="fu">++</span><span class="st">&quot;'&quot;</span>)
+
+<span class="ot">showDate ::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+showDate (d,m,y) 
+  <span class="fu">|</span> <span class="dv">0</span> <span class="fu">&lt;</span> d <span class="fu">&amp;&amp;</span> d <span class="fu">&lt;=</span> daysMonth y m <span class="fu">=</span> show d <span class="fu">++</span> <span class="st">&quot; &quot;</span> <span class="fu">++</span> monthName m <span class="fu">++</span> <span class="st">&quot;, &quot;</span> <span class="fu">++</span> show y
+  <span class="fu">|</span> otherwise                   <span class="fu">=</span> error (<span class="st">&quot;showDate: invalid date &quot;</span><span class="fu">++</span>show (d,m,y))
+
+<span class="ot">showDateRevised ::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+showDateRevised (d,m,y)
+  <span class="fu">|</span> <span class="dv">0</span> <span class="fu">&lt;</span> d <span class="fu">&amp;&amp;</span> d <span class="fu">&lt;=</span> daysMonth y m <span class="fu">=</span> showDay d <span class="fu">++</span> <span class="st">&quot; &quot;</span> <span class="fu">++</span> monthName m <span class="fu">++</span> <span class="st">&quot;, &quot;</span> <span class="fu">++</span> show y
+  <span class="fu">|</span> otherwise                   <span class="fu">=</span> error (<span class="st">&quot;showDateRevised: invalid date &quot;</span><span class="fu">++</span>show (d,m,y))
+
+<span class="ot">showDay ::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+showDay d <span class="fu">=</span> <span class="kw">case</span> md10 <span class="kw">of</span>
+  <span class="dv">1</span> <span class="fu">|</span> d <span class="fu">/=</span> <span class="dv">11</span> <span class="ot">-&gt;</span> show d <span class="fu">++</span> <span class="st">&quot;st&quot;</span>
+  <span class="dv">2</span> <span class="fu">|</span> d <span class="fu">/=</span> <span class="dv">12</span> <span class="ot">-&gt;</span> show d <span class="fu">++</span> <span class="st">&quot;nd&quot;</span>
+  <span class="dv">3</span> <span class="fu">|</span> d <span class="fu">/=</span> <span class="dv">13</span> <span class="ot">-&gt;</span> show d <span class="fu">++</span> <span class="st">&quot;rd&quot;</span>
+  _ <span class="ot">-&gt;</span> show d <span class="fu">++</span> <span class="st">&quot;th&quot;</span>
+ <span class="kw">where</span>
+   md10 <span class="fu">=</span> d <span class="ot">`mod`</span> <span class="dv">10</span></code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-12-08</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

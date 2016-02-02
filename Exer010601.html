@@ -1,0 +1,60 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 1.6.1</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 1.6.1</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-1.6.1">練習問題 1.6.1</h3>
+<p>以下の関数に適切な多相型を与えよ．</p>
+<pre class="sample"><code>const x y = x
+subst f g x = f x (g x)
+apply f x = f x
+flip f x y = f y x</code></pre>
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Prelude</span> <span class="kw">hiding</span> (const,flip)
+
+const<span class="ot"> ::</span> a <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> a)
+const    x    y  <span class="fu">=</span>  x
+
+<span class="ot">subst ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> c)
+subst    f                g            x <span class="fu">=</span>  f x (g x)
+
+<span class="ot">apply ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b)
+apply    f           x  <span class="fu">=</span>  f x
+
+flip<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> c)
+flip    f                 x    y <span class="fu">=</span>  f y x</code></pre>
+<span style="color:red;">N.B.</span>
+<pre style="display:inline;">const</pre>
+および
+<pre style="display:inline;">flip</pre>
+は
+<pre style="display:inline;">Prelude</pre>
+で定義されているので，これらを隠蔽するために
+<pre style="display:inline;">hiding</pre>
+指定して
+<pre style="display:inline;">Prelude</pre>
+をインポートする．
+<pre style="display:inline;"></pre>
+
+</div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-11</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

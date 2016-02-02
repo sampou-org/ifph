@@ -1,0 +1,75 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.2.12</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.2.12</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.2.12">練習問題 4.2.12</h3>
+<p>以下を証明せよ．</p>
+<pre class="spec"><code>(xs++ys) !! k = if k &lt; n then xs !! k else ys !! (k-n)
+                where n = length xs</code></pre>
+<hr></hr>
+<pre class="spec"><code>xs上の帰納法とkの場合分け
+
+[],kの場合
+
+左辺
+    ([]++ys) !! k
+=       { ++ の定義 }
+    ys !! k
+右辺
+    if k &lt; n then xs !! k else ys !! (k-n)
+=       { n = length [] = 0 であるから k &lt; n は False }
+    ys !! (k-0)
+=       { 算術 }
+    ys !! k
+    
+x:xs, k = 0 の場合
+左辺
+    ((x:xs)++ys) !! 0
+=       { ++ の定義 }
+    (x:(xs++ys)) !! 0
+=       { !! の定義 }
+    x
+右辺
+    if k &lt; n then (x:xs) !! k else ys !! (k-n)
+=       { length (x:xs) = 1 + length xs &gt; 0 = k だから }
+    (x:xs) !! 0
+=       { !! の定義 }
+    x
+
+x:xs, k+1の場合
+左辺
+    ((x:xs) ++ ys) !! (k+1)
+=       { ++ の定義 }
+    (x:(xs ++ ys)) !! (k+1)
+=       { !! の定義 }
+    (xs ++ ys) !! k
+=       { 帰納法の仮定 }
+    if k &lt; n then xs !! k else ys !! (k-n)
+右辺
+    if (k+1) &lt; n' then (x:xs) !! (k+1) else ys !! ((k+1)-n')
+=       { n' = length (x:xs) = 1 + length xs = 1 + n = n + 1 だから }
+    if (k+1) &lt; (n+1) then (x:xs) !! (k+1) else ys !! ((k+1)-(n+1))
+=       { k+1 &lt; n+1 ⇔ k &lt; n． !! の定義 }
+    if k &lt; n then xs !! k else ys !! (k-n)</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

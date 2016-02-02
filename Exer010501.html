@@ -1,0 +1,49 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 1.5.1</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 1.5.1</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-1.5.1">練習問題 1.5.1</h3>
+フィボナッチ数f<sub>0</sub>,f<sub>1</sub>,… は，n ≧ 0であるようなすべてのnに対して，f<sub>0</sub> = 0, f<sub>1</sub> = 1, f<sub>n+2</sub> = f<sub>n+1</sub> + f<sub>n</sub>という規則で定義する． 整数nをとり，f<sub>n</sub>を返す関数
+<pre style="display:inline;">fib</pre>
+の定義を与えよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE NPlusKPatterns #-}</span>
+
+<span class="ot">fib ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>
+fib <span class="dv">0</span>     <span class="fu">=</span> <span class="dv">0</span>
+fib <span class="dv">1</span>     <span class="fu">=</span> <span class="dv">1</span>
+fib (n<span class="fu">+</span><span class="dv">2</span>) <span class="fu">=</span> fib (n<span class="fu">+</span><span class="dv">1</span>) <span class="fu">+</span> fib n</code></pre>
+<span style="color:red;">N.B.</span> スクリプトファイル先頭の
+<pre style="display:inline;">{-# LANGUAGE NPlusKPatterns #-}</pre>
+は
+<pre style="display:inline;">n+k</pre>
+パターンを使うための言語拡張プラグマである． これのかわりに
+<pre style="display:inline;">{-# LANGUAGE Haskell98 #-}</pre>
+でもよい．
+<pre style="display:inline;"></pre>
+
+</div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2012-11-11</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

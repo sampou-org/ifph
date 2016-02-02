@@ -1,0 +1,43 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.3.6</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.3.6</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.3.6">練習問題 4.3.6</h3>
+関数
+<pre style="display:inline;">filter</pre>
+は
+<pre style="display:inline;">concat</pre>
+と
+<pre style="display:inline;">map</pre>
+<p>を使って以下のように定義できる．</p>
+<pre class="spec"><code>filter p =  concat . map box
+	    where  x = ...</code></pre>
+<pre style="display:inline;">box</pre>
+を定義せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">filter p <span class="fu">=</span> concat <span class="fu">.</span> map box
+           <span class="kw">where</span>  box x <span class="fu">=</span> [ x <span class="fu">|</span> p x ]</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

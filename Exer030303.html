@@ -1,0 +1,62 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 3.3.3</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 3.3.3</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-3.3.3">練習問題 3.3.3</h3>
+自然数の除算は，すべての正数
+<pre style="display:inline;">n</pre>
+，
+<pre style="display:inline;">m</pre>
+について
+<pre style="display:inline;">(n × m) / n = m</pre>
+であるという条件によって指定できる． 除算を行うプログラムを構成し，それが仕様を満たすことを証明せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(/) ::</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span>
+<span class="dt">Zero</span>      <span class="fu">/</span> <span class="dt">Succ</span> _    <span class="fu">=</span> <span class="dt">Zero</span>
+<span class="dt">Succ</span> <span class="dt">Zero</span> <span class="fu">/</span> <span class="dt">Succ</span> <span class="dt">Zero</span> <span class="fu">=</span> <span class="dt">Succ</span> <span class="dt">Zero</span>
+m         <span class="fu">/</span> n         <span class="fu">=</span> <span class="dt">Succ</span> ((m <span class="ot">`ominus`</span> n) <span class="fu">/</span> n)</code></pre>
+<pre style="display:inline;">m</pre>
+上の帰納法を使う
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>Zero の場合
+   (n × Zero) / n
+=  { ×の定義 }
+   Zero / n
+=  { / の定義 }
+   Zero
+
+Succ m の場合
+   (n × Succ m) / n
+=  { / の定義 }
+   Succ (((n × Succ m) `ominus` n) / n)
+=  { ×の定義 }
+   Succ ((((n × m) + n) `ominus` n) / n)
+=  { ominus の仕様：(x + y) `ominus` y = x }
+   Succ ((n × m) / n)
+=  { 帰納法の仮定 }
+   Succ m</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-01-05</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>

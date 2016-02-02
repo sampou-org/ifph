@@ -1,0 +1,100 @@
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="stylesheet" href="css/errata.css">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script></script>
+<script type="text/javascript" src="js/jquery.metadata.js"></script></script>
+<title>練習問題 4.3.4</title>
+</head>
+<body><div class="structure" id="header"><h1><a href="TOCExer.html">IFPH</a>
+— 練習問題 4.3.4</h1>
+</div>
+<div class="structure" id="container"><div id="primary-contents"><div id="box"><h3 id="練習問題-4.3.4">練習問題 4.3.4</h3>
+<pre style="display:inline;">map f (xs++ys) = map f xs ++ map f ys</pre>
+を証明し，それを使って，
+<pre style="display:inline;">map f . concat = concat . map (map f)</pre>
+を証明せよ．
+<pre style="display:inline;"></pre>
+
+<hr></hr>
+<pre style="display:inline;">map f (xs++ys) = map f xs ++ map f ys</pre>
+の証明
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>xs上の帰納法．
+
+[]の場合
+    map f ([]++ys)
+=       { ++ の定義 }
+    map f ys
+=       { ++ の定義 }
+    [] ++ map f ys
+=       { map の定義 }
+    map f [] ++ map f ys
+
+x:xs の場合
+    map f ((x:xs) ++ ys)
+=       { ++ の定義 }
+    map f (x:(xs ++ ys))
+=       { map の定義 }
+    f x : map (xs ++ ys)
+=       { 帰納法の仮定 }
+    f x : (map f xs ++ map f ys)
+=       { ++ の定義 }
+    (f x : map f xs) ++ map f ys
+=       { map の定義 }
+    map f (x:xs) ++ map f ys</code></pre>
+任意のxsに対して
+<pre style="display:inline;">map f (concat xs) = concat (map (map f) xs)</pre>
+を xs 上の帰納法を用いて証明する．
+<pre style="display:inline;"></pre>
+
+<pre class="spec"><code>⊥の場合
+    map f (concat ⊥)
+=       { concatの定義，場合の枯渇 }
+    map f ⊥
+=       { mapの定義，場合の枯渇 }
+    ⊥
+=       { concatの定義，場合の枯渇 }
+    concat ⊥
+=       { mapの定義，場合の枯渇 }
+    concat (map (map f) ⊥)
+
+[]の場合
+    map f (concat [])
+=       { concat の定義 }
+    map f []
+=       { map の定義 }
+    []
+=       { cocnat の定義 }
+    concat []
+=       { mapの定義 }
+    concat (map (map f) [])
+
+xs:xss の場合
+    map f (concat (xs:xss))
+=       { concat の定義 }
+    map f (xs ++ concat xss)
+=       { map f (xs++ys) = map f xs ++ map f ys だから }
+    map f xs ++ map f (concat xss)
+=       { 帰納法の仮定 }
+    map f xs ++ concat (map (map f) xss)
+=      { concat の定義 }
+    concat  (map f xs : map (map f) xss)
+=      { map の定義 }
+    concat (map (map f) (xs:xss))</code></pre></div>
+</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2013-02-16</div>
+<a href="index.html">HOME</a>
+<ul><li><a href="progenv.html">プログラミング環境</li>
+<li><a href="haskellinfo.html">Haskellの情報源</li>
+<li><a href="errata.html">正誤表</li>
+<li><a href="comments.html">コメント</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+</body>
+</html>
