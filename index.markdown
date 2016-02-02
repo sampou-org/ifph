@@ -1,6 +1,6 @@
 --
 title: 『関数プログラミング入門』
-date: 2012-11-11
+date: 2016-02-02
 --
 
 ## このサイトについて
@@ -19,8 +19,7 @@ date: 2012-11-11
 
 この翻訳書の内容に関するご質問，ご感想，誤りのご指摘などございましたら，
 
-- [コメント](comments.html)ページにコメントを書き込んでいただくか，
-- ifph at sampou dot org 宛にメールを送っていただくか，
+- nobsun+ifph at gmail dot com 宛にメールを送っていただくか，
 - twitter で @nobsun 宛にハッシュタグ #ifphj をつけて呟いていただくか，
 - [chaton haskell-ja](http://chaton.practical-scheme.net/haskell-ja/)でコメントを投稿していただくか，
 - haskell-jp at googlegroups dot comに参加していただいてメッセージを投稿いただく．

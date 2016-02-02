@@ -4,7 +4,6 @@ DWNS = TOCExer.markdown Exer010101.markdown Exer010102.markdown Exer010103.markd
 
 deploy	: html
 	runghc ifphsite.hs deploy
-	darcs rec && darcs push -a
 
 preview : html
 	runghc ifphsite.hs preview
