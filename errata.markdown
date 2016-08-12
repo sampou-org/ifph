@@ -1,6 +1,6 @@
 --
 title: 正誤表
-date: 2013-07-04
+date: 2016-08-12
 --
 
 ## 正誤表
@@ -23,6 +23,19 @@ date: 2013-07-04
    </td>
   </tr>
 -->
+  <tr>
+   <td>2016/08/12</td>
+   <td>p.329 evalStの定義部分</td>
+   <td>
+    誤：<pre>
+ do x <- evalSt u
+    y <- evalSt t</pre>
+    正：<pre>
+ do x <- evalSt t
+    y <- evalSt u</pre>
+   </td>
+  </tr>
+  <tr>
   <tr>
    <td>2013/06/30</td>
    <td>p.189 heightの定義直後</td>
