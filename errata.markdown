@@ -15,14 +15,22 @@ date: 2016-08-12
  </thead>
 <!--
   <tr>
-   <td>2013/07/04</td>
-   <td></td>
+   <td>2016/08/21</td>
+   <td>p.220</td>
    <td>
     誤：<br>
     正：
    </td>
   </tr>
 -->
+  <tr>
+   <td>2016/08/21</td>
+   <td>p.220 l.-12</td>
+   <td>
+    誤：(++) = foldr consdot id, where consdot x g = (x:).g <br>
+    正：(++) = foldr consdot id where consdot x g = (x:).g 
+   </td>
+  </tr>
   <tr>
    <td>2016/08/12</td>
    <td>p.329 evalStの定義部分</td>
