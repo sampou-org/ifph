@@ -1,6 +1,6 @@
 --
 title: 正誤表
-date: 2016-08-12
+date: 2016-08-21
 --
 
 ## 正誤表
@@ -23,6 +23,22 @@ date: 2016-08-12
    </td>
   </tr>
 -->
+  <tr>
+   <td>2016/08/21</td>
+   <td>p.218 l.11</td>
+   <td>
+    誤：T(accum)(m,n+1) = O(1) + T(accum)(m,n)<br>
+    正：T(accum)(m,n+1) = O(1) + T(accum)(m+1,n)
+   </td>
+  </tr>
+  <tr>
+   <td>2016/08/21</td>
+   <td>p.219 l.3</td>
+   <td>
+    誤：accum ws [] = wss<br>
+    正：accum ws [] = ws
+   </td>
+  </tr>
   <tr>
    <td>2016/08/21</td>
    <td>p.220 l.-12</td>
