@@ -36,6 +36,30 @@
   </tr>
 -->
   <tr>
+   <td>2016/08/21</td>
+   <td>p.218 l.11</td>
+   <td>
+    誤：T(accum)(m,n+1) = O(1) + T(accum)(m,n)<br>
+    正：T(accum)(m,n+1) = O(1) + T(accum)(m+1,n)
+   </td>
+  </tr>
+  <tr>
+   <td>2016/08/21</td>
+   <td>p.219 l.3</td>
+   <td>
+    誤：accum ws [] = wss<br>
+    正：accum ws [] = ws
+   </td>
+  </tr>
+  <tr>
+   <td>2016/08/21</td>
+   <td>p.220 l.-12</td>
+   <td>
+    誤：(++) = foldr consdot id, where consdot x g = (x:).g <br>
+    正：(++) = foldr consdot id where consdot x g = (x:).g 
+   </td>
+  </tr>
+  <tr>
    <td>2016/08/12</td>
    <td>p.329 evalStの定義部分</td>
    <td>
@@ -317,7 +341,7 @@ o.003(iii)-謝辞 4行目
 
 </div>
 </div>
-<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2016-08-12</div>
+<div id="secondary-contents"><div id="navigation"><div id="lastupdate">Last update 2016-08-21</div>
 <a href="index.html">HOME</a>
 <ul><li><a href="progenv.html">プログラミング環境</li>
 <li><a href="haskellinfo.html">Haskellの情報源</li>
@@ -327,6 +351,6 @@ o.003(iii)-謝辞 4行目
 </div>
 </div>
 </div>
-<div class="structure" id="footer">© 2012-2013 Nobuo Yamashita all rights reserved.</div>
+<div class="structure" id="footer">© 2012-2016 Nobuo Yamashita all rights reserved.</div>
 </body>
 </html>
